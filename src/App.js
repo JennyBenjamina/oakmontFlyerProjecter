@@ -1,25 +1,36 @@
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { useState } from "react";
+import MyNav from "./Components/MyNav";
+import Home from "./Pages/Home";
+import Men from "./Pages/Men";
+import Women from "./Pages/Women";
+import Etiquette from "./Pages/Etiquette";
+import Misc from "./Pages/Misc";
 
-function App() {
+const App = () => {
+  const [isLoading, setIsLoading] = useState(true);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      {isLoading ? <MyNav /> : null}
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route
+          path="/mens_events"
+          element={<Men setIsLoading={setIsLoading} />}
+        />
+        <Route
+          path="/womens_events"
+          element={<Women setIsLoading={setIsLoading} />}
+        />
+        <Route
+          path="/etiquette"
+          element={<Etiquette setIsLoading={setIsLoading} />}
+        />
+        <Route path="/misc" element={<Misc setIsLoading={setIsLoading} />} />
+      </Routes>
+    </BrowserRouter>
   );
-}
+};
 
 export default App;

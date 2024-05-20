@@ -1,0 +1,102 @@
+import React, { useEffect, useState } from "react";
+import Carousel from "react-bootstrap/Carousel";
+import Button from "react-bootstrap/Button";
+import axios from "axios";
+import DateComponent from "./DateComponent";
+
+const MyCarousel = ({ category, setIsLoading }) => {
+  const [images, setImages] = useState(null);
+  const [showCarousel, setShowCarousel] = useState(false);
+
+  const currentYear = new Date().getFullYear();
+  const years = Array.from({ length: currentYear - 2019 }, (_, i) => 2020 + i);
+  const months = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+  ];
+
+  const [month, setMonth] = useState(months.indexOf("January") + 1);
+  const [year, setYear] = useState("2024");
+
+  const handleDateChange = (date) => {
+    console.log("handl date change: ", date);
+    setMonth(date.getMonth() + 1); // getMonth() returns a zero-based month, so add 1
+    setYear(date.getFullYear());
+  };
+
+  const serverURL = "http://localhost:5000";
+
+  useEffect(() => {
+    if (showCarousel) {
+      axios
+        .get(
+          `${serverURL}/images?month=${month}&year=${year}&category=${category}`
+        )
+        .then((response) => {
+          console.log(response.data);
+          setImages(response.data);
+          setIsLoading(false);
+        })
+        .catch((error) => {
+          console.log("err", error);
+        });
+    }
+  }, [category, showCarousel, month, year]);
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    setShowCarousel(true);
+  };
+
+  return (
+    <div className="files-upload">
+      {showCarousel ? null : (
+        <>
+          {" "}
+          <DateComponent onDateChange={handleDateChange} />
+          <Button
+            classname="m-3"
+            variant="primary"
+            type="button"
+            onClick={handleSubmit}
+          >
+            Submit
+          </Button>
+        </>
+      )}
+      {showCarousel ? (
+        <Carousel interval={2000}>
+          {images ? (
+            images.map((image, index) => (
+              <Carousel.Item
+                key={index}
+                style={{ height: "100vh", width: "100vw" }}
+              >
+                <img
+                  className="d-block img-fluid"
+                  src={`${serverURL}/images/${image}`}
+                  alt={`Slide ${index + 1}`}
+                  style={{ objectFit: "contain", height: "100%" }}
+                />
+              </Carousel.Item>
+            ))
+          ) : (
+            <div> No images found</div>
+          )}
+        </Carousel>
+      ) : null}
+    </div>
+  );
+};
+
+export default MyCarousel;
