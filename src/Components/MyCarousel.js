@@ -64,7 +64,7 @@ const MyCarousel = ({ category, setIsLoading }) => {
           {" "}
           <DateComponent onDateChange={handleDateChange} />
           <Button
-            classname="m-3"
+            className="m-3"
             variant="primary"
             type="button"
             onClick={handleSubmit}
