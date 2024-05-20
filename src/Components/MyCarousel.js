@@ -5,6 +5,7 @@ import axios from "axios";
 import DateComponent from "./DateComponent";
 
 const MyCarousel = ({ category, setIsLoading }) => {
+  const REACT_APP_SERVER_URL = "https://seashell-app-6co28.ondigitalocean.app/"; // "http://localhost:5000
   const [images, setImages] = useState(null);
   const [showCarousel, setShowCarousel] = useState(false);
 
@@ -34,13 +35,11 @@ const MyCarousel = ({ category, setIsLoading }) => {
     setYear(date.getFullYear());
   };
 
-  const serverURL = "http://localhost:5000";
-
   useEffect(() => {
     if (showCarousel) {
       axios
         .get(
-          `${serverURL}/images?month=${month}&year=${year}&category=${category}`
+          `${REACT_APP_SERVER_URL}/images?month=${month}&year=${year}&category=${category}`
         )
         .then((response) => {
           console.log(response.data);
@@ -84,7 +83,7 @@ const MyCarousel = ({ category, setIsLoading }) => {
               >
                 <img
                   className="d-block img-fluid"
-                  src={`${serverURL}/images/${image}`}
+                  src={`${REACT_APP_SERVER_URL}/images/${image}`}
                   alt={`Slide ${index + 1}`}
                   style={{ objectFit: "contain", height: "100%" }}
                 />

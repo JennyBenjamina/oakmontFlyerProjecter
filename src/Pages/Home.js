@@ -33,7 +33,8 @@ function Home() {
       const formData = new FormData();
       formData.append("img", file);
 
-      const serverURL = "http://localhost:5000";
+      const REACT_APP_SERVER_URL =
+        "https://seashell-app-6co28.ondigitalocean.app/";
       axios
         .post(
           `${serverURL}/addfile?month=${month}&year=${year}&category=${category}`,
