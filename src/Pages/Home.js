@@ -37,7 +37,7 @@ function Home() {
         "https://seashell-app-6co28.ondigitalocean.app/";
       axios
         .post(
-          `${serverURL}/addfile?month=${month}&year=${year}&category=${category}`,
+          `${REACT_APP_SERVER_URL}/addfile?month=${month}&year=${year}&category=${category}`,
           formData
         ) // this was formData
         .then((response) => {
