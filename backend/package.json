@@ -2,7 +2,7 @@
   "name": "server",
   "version": "1.0.0",
   "description": "nodejs server",
-  "main": "server.mjs",
+  "main": "server/server.mjs",
   "scripts": {
     "build": "react-scripts build",
     "start": "nodemon server.mjs"
