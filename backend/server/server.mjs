@@ -6,7 +6,6 @@ import { fileURLToPath } from "url";
 import { conn, upload, gfs } from "./database.mjs";
 import mongodb from "mongodb";
 const app = express();
-const port = process.env.PORT || 5000;
 
 app.use(
   cors({
