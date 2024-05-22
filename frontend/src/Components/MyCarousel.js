@@ -5,7 +5,8 @@ import axios from "axios";
 import DateComponent from "./DateComponent";
 
 const MyCarousel = ({ category, setIsLoading }) => {
-  const REACT_APP_SERVER_URL = "https://seashell-app-6co28.ondigitalocean.app"; // "http://localhost:5000
+  const REACT_APP_SERVER_URL =
+    "https://seashell-app-6co28.ondigitalocean.app:5000"; // "http://localhost:5000
   const [images, setImages] = useState(null);
   const [showCarousel, setShowCarousel] = useState(false);
 

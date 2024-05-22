@@ -34,7 +34,7 @@ function Home() {
       formData.append("img", file);
 
       const REACT_APP_SERVER_URL =
-        "https://seashell-app-6co28.ondigitalocean.app";
+        "https://seashell-app-6co28.ondigitalocean.app:5000";
       axios
         .post(
           `${REACT_APP_SERVER_URL}/addfile?month=${month}&year=${year}&category=${category}`,
