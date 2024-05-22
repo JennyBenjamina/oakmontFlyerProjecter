@@ -5,7 +5,7 @@
   "main": "server/server.mjs",
   "scripts": {
     "build": "react-scripts build",
-    "start": "node server.mjs"
+    "start": "node server/server.mjs"
   },
   "author": "Jenny",
   "license": "ISC",
