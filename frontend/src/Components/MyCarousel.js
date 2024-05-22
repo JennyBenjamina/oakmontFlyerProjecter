@@ -6,7 +6,7 @@ import DateComponent from "./DateComponent";
 
 const MyCarousel = ({ category, setIsLoading }) => {
   const REACT_APP_SERVER_URL =
-    "https://king-prawn-app-2-jjatv.ondigitalocean.app/"; // "http://localhost:5000
+    "https://king-prawn-app-2-jjatv.ondigitalocean.app"; // "http://localhost:5000
   const [images, setImages] = useState(null);
   const [showCarousel, setShowCarousel] = useState(false);
 

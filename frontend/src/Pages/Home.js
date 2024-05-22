@@ -34,7 +34,7 @@ function Home() {
       formData.append("img", file);
 
       const REACT_APP_SERVER_URL =
-        "https://king-prawn-app-2-jjatv.ondigitalocean.app/";
+        "https://king-prawn-app-2-jjatv.ondigitalocean.app";
       axios
         .post(
           `${REACT_APP_SERVER_URL}/addfile?month=${month}&year=${year}&category=${category}`,
