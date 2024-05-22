@@ -5,6 +5,7 @@ import { dirname } from "path";
 import { fileURLToPath } from "url";
 import { conn, upload, gfs } from "./database.mjs";
 import mongodb from "mongodb";
+const port = process.env.PORT || 5000;
 const app = express();
 
 app.use(
@@ -88,6 +89,6 @@ app.get("/images/:filename", async (req, res) => {
   }
 });
 
-app.listen(() => {
-  console.log(`Server is running`);
+app.listen(port, () => {
+  console.log(`Server is running ${port}`);
 });

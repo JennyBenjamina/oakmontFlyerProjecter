@@ -4,7 +4,6 @@
   "description": "nodejs server",
   "main": "server/server.mjs",
   "scripts": {
-    "build": "react-scripts build",
     "start": "node server/server.mjs"
   },
   "author": "Jenny",
