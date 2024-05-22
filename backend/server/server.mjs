@@ -10,7 +10,7 @@ const app = express();
 
 app.use(
   cors({
-    origin: "*",
+    origin: "https://octopus-app-39r48.ondigitalocean.app",
   })
 );
 app.use(express.json());
