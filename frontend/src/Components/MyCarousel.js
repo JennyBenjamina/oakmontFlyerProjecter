@@ -6,7 +6,10 @@ import DateComponent from "./DateComponent";
 
 const MyCarousel = ({ category, setIsLoading }) => {
   const REACT_APP_SERVER_URL =
-    "https://king-prawn-app-2-jjatv.ondigitalocean.app"; // "http://localhost:5000
+    process.env.NODE_ENV === "production"
+      ? "https://king-prawn-app-2-jjatv.ondigitalocean.app"
+      : "http://localhost:5000";
+
   const [images, setImages] = useState(null);
   const [showCarousel, setShowCarousel] = useState(false);
 
@@ -75,7 +78,12 @@ const MyCarousel = ({ category, setIsLoading }) => {
         </>
       )}
       {showCarousel ? (
-        <Carousel interval={2000}>
+        <Carousel
+          interval={3500}
+          indicators={false}
+          controls={false}
+          fade={true}
+        >
           {images ? (
             images.map((image, index) => (
               <Carousel.Item
@@ -86,7 +94,7 @@ const MyCarousel = ({ category, setIsLoading }) => {
                   className="d-block img-fluid"
                   src={`${REACT_APP_SERVER_URL}/images/${image}`}
                   alt={`Slide ${index + 1}`}
-                  style={{ objectFit: "contain", height: "100%" }}
+                  style={{ objectFit: "", height: "100%" }}
                 />
               </Carousel.Item>
             ))

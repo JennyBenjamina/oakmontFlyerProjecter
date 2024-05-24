@@ -37,3 +37,12 @@ body {
 .nav-link:hover::after {
   width: 100%;
 }
+
+.carousel-item {
+  opacity: 0;
+  transition: opacity 1s !important;
+}
+.carousel-item.active {
+  opacity: 1;
+  transition: opacity 1s !important;
+}

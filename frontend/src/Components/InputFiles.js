@@ -3,15 +3,9 @@ import Form from "react-bootstrap/Form";
 import axios from "axios";
 import { Button, Modal, Spinner } from "react-bootstrap";
 
-function InputFiles({ onFileChange }) {
-  // const [formData, setFormData] = useState(new FormData());
-  // const [text, setText] = useState("");
-
-  const [load, setLoad] = useState(false);
-
+function InputFiles({ onFileChange, load, setLoad }) {
   const handleFileUpload = (event) => {
     if (event.target.files && event.target.files.length > 0) {
-      setLoad(true);
       onFileChange(event.target.files[0]);
     }
   };
@@ -24,7 +18,7 @@ function InputFiles({ onFileChange }) {
           <Form.Control
             type="file"
             placeholder="Upload flyers"
-            accept=".jpg, .jpeg, .png .pdf"
+            accept=".jpg, .jpeg, .png, .pdf"
             onChange={handleFileUpload}
           />
         </Form.Group>

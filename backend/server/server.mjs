@@ -8,9 +8,16 @@ import mongodb from "mongodb";
 const port = process.env.PORT || 5000;
 const app = express();
 
+const devFrontend = "*"; // replace with your dev server address
+const prodFrontend = "https://octopus-app-39r48.ondigitalocean.app";
+
+// Use the NODE_ENV to determine the current environment
+const frontendUrl =
+  process.env.NODE_ENV === "production" ? prodFrontend : devFrontend;
+
 app.use(
   cors({
-    origin: "https://octopus-app-39r48.ondigitalocean.app",
+    origin: frontendUrl,
   })
 );
 app.use(express.json());
@@ -24,6 +31,10 @@ app.use(express.urlencoded({ extended: true }));
  * @param callback function for request and response
  * @returns response with the request body
  */
+
+app.get("/", (req, res) => {
+  res.send("Hello World");
+});
 
 app.post("/addFile", upload.single("img"), async (req, res) => {
   res.json(req.file);
