@@ -17,7 +17,7 @@ const frontendUrl =
 
 app.use(
   cors({
-    origin: frontendUrl,
+    origin: "*",
   })
 );
 app.use(express.json());
