@@ -5,13 +5,6 @@ import axios from "axios";
 import DateComponent from "./DateComponent";
 
 const MyCarousel = ({ category, setIsLoading }) => {
-  const REACT_APP_SERVER_URL =
-    process.env.NODE_ENV === "production"
-      ? "https://king-prawn-app-2-jjatv.ondigitalocean.app"
-      : "http://localhost:5000";
-
-  console.log(process.env.test);
-
   const [images, setImages] = useState(null);
   const [showCarousel, setShowCarousel] = useState(false);
 
