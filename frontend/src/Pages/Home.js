@@ -35,13 +35,10 @@ function Home() {
       const formData = new FormData();
       formData.append("img", file);
       console.log("file", file);
-      const REACT_APP_SERVER_URL =
-        process.env.NODE_ENV === "production"
-          ? "https://king-prawn-app-2-jjatv.ondigitalocean.app"
-          : "http://localhost:5000";
+
       axios
         .post(
-          `${REACT_APP_SERVER_URL}/addfile?month=${month}&year=${year}&category=${category}`,
+          `${process.env.REACT_APP_SERVER_URL}/addfile?month=${month}&year=${year}&category=${category}`,
           formData
         ) // this was formData
         .then((response) => {

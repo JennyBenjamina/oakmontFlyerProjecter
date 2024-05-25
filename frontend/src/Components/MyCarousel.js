@@ -37,7 +37,7 @@ const MyCarousel = ({ category, setIsLoading }) => {
     if (showCarousel) {
       axios
         .get(
-          `${REACT_APP_SERVER_URL}/images?month=${month}&year=${year}&category=${category}`
+          `${process.env.REACT_APP_SERVER_URL}/images?month=${month}&year=${year}&category=${category}`
         )
         .then((response) => {
           console.log(response.data);
@@ -86,7 +86,7 @@ const MyCarousel = ({ category, setIsLoading }) => {
               >
                 <img
                   className="d-block img-fluid"
-                  src={`${REACT_APP_SERVER_URL}/images/${image}`}
+                  src={`${process.env.REACT_APP_SERVER_URL}/images/${image}`}
                   alt={`Slide ${index + 1}`}
                   style={{ objectFit: "", height: "100%" }}
                 />
