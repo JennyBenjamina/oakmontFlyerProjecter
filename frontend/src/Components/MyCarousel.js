@@ -10,6 +10,8 @@ const MyCarousel = ({ category, setIsLoading }) => {
       ? "https://king-prawn-app-2-jjatv.ondigitalocean.app"
       : "http://localhost:5000";
 
+  console.log(REACT_APP_SERVER_URL);
+
   const [images, setImages] = useState(null);
   const [showCarousel, setShowCarousel] = useState(false);
 
@@ -34,7 +36,6 @@ const MyCarousel = ({ category, setIsLoading }) => {
   const [year, setYear] = useState("2024");
 
   const handleDateChange = (date) => {
-    console.log("handl date change: ", date);
     setMonth(date.getMonth() + 1); // getMonth() returns a zero-based month, so add 1
     setYear(date.getFullYear());
   };
