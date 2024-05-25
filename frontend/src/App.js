@@ -6,6 +6,7 @@ import Men from "./Pages/Men";
 import Women from "./Pages/Women";
 import Etiquette from "./Pages/Etiquette";
 import Misc from "./Pages/Misc";
+import EditPhotos from "./Pages/EditPhotos";
 
 const App = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -15,6 +16,10 @@ const App = () => {
       {isLoading ? <MyNav /> : null}
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route
+          path="/edit_photos"
+          element={<EditPhotos setIsLoading={setIsLoading} />}
+        />
         <Route
           path="/mens_events"
           element={<Men setIsLoading={setIsLoading} />}

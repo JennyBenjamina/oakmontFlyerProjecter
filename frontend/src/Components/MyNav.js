@@ -33,6 +33,9 @@ const MyNav = () => {
             <LinkContainer to="/misc" style={{ cursor: "pointer" }}>
               <Nav.Link>Misc</Nav.Link>
             </LinkContainer>
+            <LinkContainer to="/edit_photos" style={{ cursor: "pointer" }}>
+              <Nav.Link>Edit Photos</Nav.Link>
+            </LinkContainer>
           </Nav>
         </Navbar.Collapse>
       </Container>

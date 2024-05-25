@@ -40,6 +40,31 @@ app.post("/addFile", upload.single("img"), async (req, res) => {
   res.json(req.file);
 });
 
+app.get("/imageNames", async (req, res) => {
+  const category = req.query.category;
+  const month = req.query.month;
+  const year = req.query.year;
+
+  try {
+    let files = await gfs.files
+      .find({
+        "metadata.category": category,
+        "metadata.month": month,
+        "metadata.year": year,
+      })
+      .toArray();
+    const fileNames = files.map((file) => file.filename);
+
+    if (fileNames.length > 0) {
+      res.send(fileNames);
+    } else {
+      res.send("No files found");
+    }
+  } catch (err) {
+    res.send(err);
+  }
+});
+
 // dates
 const date = new Date();
 
