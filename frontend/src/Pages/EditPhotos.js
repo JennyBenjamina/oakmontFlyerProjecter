@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Button, Form, ListGroup } from "react-bootstrap";
+import { Button, Form, ListGroup, Card } from "react-bootstrap";
 
 import DateComponent from "../Components/DateComponent";
 import axios from "axios";
@@ -11,12 +11,17 @@ function EditPhotos({ setIsLoading }) {
   const categories = ["men", "women", "misc", "etiquette"];
   const [category, setCategory] = useState(categories[0]);
 
-  const handleDelete = (filename) => {
-    // Replace with your own API endpoint
-    // axios.delete(`/api/photos/${id}`).then(() => {
-    //   setPhotos(photos.filter((photo) => photo.id !== id));
-    // });
-    console.log("delete", filename);
+  const handleDelete = (photo) => {
+    axios
+      .delete(`${process.env.REACT_APP_SERVER_URL}/deleteFile`, {
+        data: { id: photo.id, filename: photo.filename },
+      })
+      .then(() => {
+        setPhotos(photos.filter((p) => p._id !== photo._id));
+      })
+      .catch((err) => {
+        console.error(err);
+      });
   };
 
   const handleDateChange = (date) => {
@@ -26,7 +31,6 @@ function EditPhotos({ setIsLoading }) {
 
   const handleCategoryChange = (event) => {
     setCategory(event.target.value);
-    console.log("category", event.target.value);
   };
 
   const handleSubmit = (event) => {
@@ -36,6 +40,10 @@ function EditPhotos({ setIsLoading }) {
         `${process.env.REACT_APP_SERVER_URL}/imageNames?month=${month}&year=${year}&category=${category}`
       )
       .then((response) => {
+        if (response.data === "No files found") {
+          setPhotos([]);
+          return;
+        }
         setPhotos(response.data);
         console.log("photos", response.data);
         setIsLoading(false);
@@ -46,19 +54,17 @@ function EditPhotos({ setIsLoading }) {
   };
 
   return (
-    <div className="container">
+    <div className="files-upload">
       <h1>Edit Photos</h1>
-      <Form.Select
-        className="m-3 "
-        onChange={handleCategoryChange}
-        value={category}
-      >
-        {categories.map((category, index) => (
-          <option key={index} value={category}>
-            {category}
-          </option>
-        ))}
-      </Form.Select>
+      <div className="m-3">
+        <Form.Select onChange={handleCategoryChange} value={category}>
+          {categories.map((category, index) => (
+            <option key={index} value={category}>
+              {category}
+            </option>
+          ))}
+        </Form.Select>
+      </div>
       <DateComponent onDateChange={handleDateChange} />
       <Button
         className="m-3"
@@ -69,31 +75,32 @@ function EditPhotos({ setIsLoading }) {
         Get Photos
       </Button>
       <div className="files-upload">
-        {photos
-          ? photos.map((photo, index) => (
+        <Card className="m-3">
+          <Card.Header>Photos</Card.Header>
+          <Card.Body>
+            {photos.map((photo, index) => (
               <ListGroup
                 key={index}
                 horizontal
                 className="justify-content-between m-3"
                 style={{
-                  border: "1px solid gray",
                   padding: "1rem",
-                  borderRadius: "5px",
                 }}
               >
-                <ListGroup.Item className="m-2">{photo}</ListGroup.Item>
-                <div>
-                  <Button
-                    className="m-2"
-                    variant="danger"
-                    onClick={() => handleDelete(photo)}
-                  >
-                    Delete
-                  </Button>
-                </div>
+                <ListGroup.Item className="m-2">
+                  {photo.filename}
+                </ListGroup.Item>
+                <Button
+                  className="m-2"
+                  variant="danger"
+                  onClick={() => handleDelete(photo)}
+                >
+                  Delete
+                </Button>
               </ListGroup>
-            ))
-          : null}
+            ))}
+          </Card.Body>
+        </Card>
       </div>
     </div>
   );

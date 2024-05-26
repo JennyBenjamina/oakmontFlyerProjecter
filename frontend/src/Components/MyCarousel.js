@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
 import Carousel from "react-bootstrap/Carousel";
 import Button from "react-bootstrap/Button";
+import ProgressBar from "react-bootstrap/ProgressBar";
 import axios from "axios";
 import DateComponent from "./DateComponent";
 
 const MyCarousel = ({ category, setIsLoading }) => {
-  const [images, setImages] = useState(null);
+  const [images, setImages] = useState([]);
   const [showCarousel, setShowCarousel] = useState(false);
 
   const currentYear = new Date().getFullYear();
@@ -41,6 +42,10 @@ const MyCarousel = ({ category, setIsLoading }) => {
         )
         .then((response) => {
           console.log(response.data);
+          if (response.data === "No files found") {
+            setImages(["No files found"]);
+            return;
+          }
           setImages(response.data);
           setIsLoading(false);
         })
@@ -53,13 +58,19 @@ const MyCarousel = ({ category, setIsLoading }) => {
   const handleSubmit = (event) => {
     event.preventDefault();
     setShowCarousel(true);
+    console.log(showCarousel);
+
+    if (images[0] === "No files found" || images.length === 0) {
+      setTimeout(() => {
+        setShowCarousel(false);
+      }, 3000); // 3000 milliseconds = 3 seconds
+    }
   };
 
   return (
-    <div className="files-upload">
+    <>
       {showCarousel ? null : (
-        <>
-          {" "}
+        <div className="files-upload">
           <DateComponent onDateChange={handleDateChange} />
           <Button
             className="m-3"
@@ -69,7 +80,7 @@ const MyCarousel = ({ category, setIsLoading }) => {
           >
             Submit
           </Button>
-        </>
+        </div>
       )}
       {showCarousel ? (
         <Carousel
@@ -78,26 +89,31 @@ const MyCarousel = ({ category, setIsLoading }) => {
           controls={false}
           fade={true}
         >
-          {images ? (
+          {images.length > 0 ? (
             images.map((image, index) => (
-              <Carousel.Item
-                key={index}
-                style={{ height: "100vh", width: "100vw" }}
-              >
+              <Carousel.Item key={index}>
                 <img
-                  className="d-block img-fluid"
+                  className="d-block "
                   src={`${process.env.REACT_APP_SERVER_URL}/images/${image}`}
                   alt={`Slide ${index + 1}`}
-                  style={{ objectFit: "", height: "100%" }}
+                  style={{
+                    height: "100%",
+                    border: "4px solid black",
+                  }}
                 />
               </Carousel.Item>
             ))
           ) : (
-            <div> No images found</div>
+            <ProgressBar
+              className="mt-4"
+              variant="success"
+              animated
+              now={100}
+            />
           )}
         </Carousel>
       ) : null}
-    </div>
+    </>
   );
 };
 

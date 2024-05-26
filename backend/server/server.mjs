@@ -56,12 +56,43 @@ app.get("/imageNames", async (req, res) => {
     const fileNames = files.map((file) => file.filename);
 
     if (fileNames.length > 0) {
-      res.send(fileNames);
+      res.send(files);
     } else {
       res.send("No files found");
     }
   } catch (err) {
     res.send(err);
+  }
+});
+
+import { ObjectId } from "mongodb";
+
+app.delete("/deleteFile", async (req, res) => {
+  const id = req.body.id; // Get the id from the request body
+  console.log(req.body.filename);
+  try {
+    // Check if file exists in the db
+    const objId = new ObjectId(id);
+    // const file = await gfs.files.find({ _id: objId }).toArray();
+    const file = await gfs.files
+      .find({ filename: req.body.filename })
+      .toArray();
+
+    console.log(file);
+    if (!file) {
+      return res.status(404).send({ message: "File not found." });
+    }
+
+    await gfs.files.updateMany(
+      { filename: req.body.filename },
+      { $set: { "metadata.category": "archive" } }
+    );
+
+    res.send({ message: "File deleted successfully." });
+  } catch (err) {
+    res
+      .status(500)
+      .send({ message: "An error occurred while deleting the file." });
   }
 });
 
@@ -73,10 +104,6 @@ app.get("/images", async (req, res) => {
   const month = req.query.month;
   const year = req.query.year;
 
-  console.log("category", category);
-  console.log("month", month);
-  console.log("year", year);
-
   try {
     let files = await gfs.files
       .find({
@@ -86,8 +113,6 @@ app.get("/images", async (req, res) => {
       })
       .toArray();
     const fileNames = files.map((file) => file.filename);
-
-    console.log("fileName", fileNames);
 
     if (fileNames.length > 0) {
       res.send(fileNames);
