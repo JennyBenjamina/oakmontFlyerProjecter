@@ -11,11 +11,12 @@ function EditPhotos({ setIsLoading }) {
   const categories = ["men", "women", "misc", "etiquette"];
   const [category, setCategory] = useState(categories[0]);
 
-  const handleDelete = (id) => {
+  const handleDelete = (filename) => {
     // Replace with your own API endpoint
     // axios.delete(`/api/photos/${id}`).then(() => {
     //   setPhotos(photos.filter((photo) => photo.id !== id));
     // });
+    console.log("delete", filename);
   };
 
   const handleDateChange = (date) => {
@@ -24,8 +25,8 @@ function EditPhotos({ setIsLoading }) {
   };
 
   const handleCategoryChange = (event) => {
-    setCategory(categories[event.target.value]);
-    console.log("category", categories[event.target.value]);
+    setCategory(event.target.value);
+    console.log("category", event.target.value);
   };
 
   const handleSubmit = (event) => {
@@ -69,12 +70,11 @@ function EditPhotos({ setIsLoading }) {
       </Button>
       <div className="files-upload">
         {photos
-          ? photos.map((photo) => (
+          ? photos.map((photo, index) => (
               <ListGroup
-                key={photo.id}
+                key={index}
                 horizontal
                 className="justify-content-between m-3"
-                variant="flush"
                 style={{
                   border: "1px solid gray",
                   padding: "1rem",
@@ -86,7 +86,7 @@ function EditPhotos({ setIsLoading }) {
                   <Button
                     className="m-2"
                     variant="danger"
-                    onClick={() => handleDelete(photo.id)}
+                    onClick={() => handleDelete(photo)}
                   >
                     Delete
                   </Button>
