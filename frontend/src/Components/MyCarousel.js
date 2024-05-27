@@ -2,10 +2,15 @@ import React, { useEffect, useState } from "react";
 import Carousel from "react-bootstrap/Carousel";
 import Button from "react-bootstrap/Button";
 import ProgressBar from "react-bootstrap/ProgressBar";
+import Modal from "react-bootstrap/Modal";
+
 import axios from "axios";
 import DateComponent from "./DateComponent";
 
 const MyCarousel = ({ category, setIsLoading }) => {
+  const [fullscreen, setFullscreen] = useState(true);
+  const [show, setShow] = useState(true);
+
   const [images, setImages] = useState([]);
   const [showCarousel, setShowCarousel] = useState(false);
 
@@ -44,6 +49,11 @@ const MyCarousel = ({ category, setIsLoading }) => {
           console.log(response.data);
           if (response.data === "No files found") {
             setImages(["No files found"]);
+
+            console.log("images", images);
+            setTimeout(() => {
+              setShowCarousel(false);
+            }, 3000); // 3000 milliseconds = 3 seconds
             return;
           }
           setImages(response.data);
@@ -58,60 +68,75 @@ const MyCarousel = ({ category, setIsLoading }) => {
   const handleSubmit = (event) => {
     event.preventDefault();
     setShowCarousel(true);
+    setShow(true);
     console.log(showCarousel);
-
-    if (images[0] === "No files found" || images.length === 0) {
-      setTimeout(() => {
-        setShowCarousel(false);
-      }, 3000); // 3000 milliseconds = 3 seconds
-    }
   };
+
+  const handleClose = () => {
+    setShow(false);
+    setShowCarousel(false);
+  };
+  const handleShow = () => setShow(true);
 
   return (
     <>
-      {showCarousel ? null : (
-        <div className="files-upload">
-          <DateComponent onDateChange={handleDateChange} />
-          <Button
-            className="m-3"
-            variant="success"
-            type="button"
-            onClick={handleSubmit}
-          >
-            Submit
-          </Button>
-        </div>
-      )}
-      {showCarousel ? (
-        <Carousel
-          interval={3500}
-          indicators={false}
-          controls={false}
-          fade={true}
+      <div className="files-upload">
+        <DateComponent onDateChange={handleDateChange} />
+        <Button
+          className="m-3"
+          variant="success"
+          type="button"
+          onClick={handleSubmit}
         >
-          {images.length > 0 ? (
-            images.map((image, index) => (
-              <Carousel.Item key={index}>
-                <img
-                  className="d-block "
-                  src={`${process.env.REACT_APP_SERVER_URL}/images/${image}`}
-                  alt={`Slide ${index + 1}`}
-                  style={{
-                    height: "100%",
-                    border: "4px solid black",
-                  }}
+          Submit
+        </Button>
+      </div>
+      {showCarousel ? (
+        <Modal show={show} onHide={handleClose} fullscreen={true}>
+          <Modal.Header closeButton>
+            <Modal.Title>Modal heading</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            <Carousel
+              interval={3500}
+              indicators={false}
+              controls={false}
+              fade={true}
+            >
+              {images.length > 0 ? (
+                images.map((image, index) => (
+                  <Carousel.Item key={index}>
+                    <img
+                      className="d-block "
+                      src={`${process.env.REACT_APP_SERVER_URL}/images/${image}`}
+                      alt={`Slide ${index + 1}`}
+                      style={{
+                        height: "100vh",
+                        margin: "0 auto",
+                      }}
+                    />
+                  </Carousel.Item>
+                ))
+              ) : (
+                <ProgressBar
+                  className="mt-4"
+                  variant="success"
+                  animated
+                  now={100}
                 />
-              </Carousel.Item>
-            ))
-          ) : (
-            <ProgressBar
-              className="mt-4"
-              variant="success"
-              animated
-              now={100}
-            />
-          )}
-        </Carousel>
+              )}
+            </Carousel>
+          </Modal.Body>
+
+          <Modal.Footer>
+            <Button variant="secondary" onClick={handleClose}>
+              Close
+            </Button>
+            <Button variant="primary" onClick={handleClose}>
+              Save Changes
+            </Button>
+          </Modal.Footer>
+        </Modal>
       ) : null}
     </>
   );

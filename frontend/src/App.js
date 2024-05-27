@@ -13,7 +13,8 @@ const App = () => {
 
   return (
     <BrowserRouter>
-      {isLoading ? <MyNav /> : null}
+      {/* {isLoading ? <MyNav /> : null} */}
+      <MyNav />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route
