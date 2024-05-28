@@ -19,8 +19,11 @@ const MyNav = () => {
           </Navbar.Brand>
         </LinkContainer>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
-        <Navbar.Collapse id="basic-navbar-nav">
-          <Nav className="ms-auto">
+        <Navbar.Collapse
+          id="basic-navbar-nav"
+          className="justify-content-around"
+        >
+          <Nav>
             <LinkContainer to="/mens_events" style={{ cursor: "pointer" }}>
               <Nav.Link>Men</Nav.Link>
             </LinkContainer>
@@ -33,6 +36,8 @@ const MyNav = () => {
             <LinkContainer to="/misc" style={{ cursor: "pointer" }}>
               <Nav.Link>Misc</Nav.Link>
             </LinkContainer>
+          </Nav>
+          <Nav className="last-nav">
             <LinkContainer to="/edit_photos" style={{ cursor: "pointer" }}>
               <Nav.Link>Edit Photos</Nav.Link>
             </LinkContainer>

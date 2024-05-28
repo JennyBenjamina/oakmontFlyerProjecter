@@ -17,7 +17,6 @@ body {
 .nav-link {
   position: relative;
   text-decoration: none;
-  color: #000;
   margin: 0 20px;
   color: brown !important;
   text-transform: uppercase;
@@ -38,6 +37,10 @@ body {
   width: 100%;
 }
 
+.last-nav .nav-link:last-child {
+  color: darkgreen !important;
+}
+
 .carousel-item {
   opacity: 0;
   transition: opacity 1s !important;
@@ -45,4 +48,9 @@ body {
 .carousel-item.active {
   opacity: 1;
   transition: opacity 1s !important;
+}
+
+.modal-body {
+  padding: 0 !important;
+  overflow: hidden !important;
 }

@@ -75,7 +75,7 @@ function Home() {
             load={load}
             setLoad={setLoad}
           />
-          <Button variant="primary" type="button" onClick={handleFileUpload}>
+          <Button variant="success" type="button" onClick={handleFileUpload}>
             Upload File
           </Button>
         </div>
