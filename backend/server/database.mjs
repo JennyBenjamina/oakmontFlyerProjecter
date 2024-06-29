@@ -28,6 +28,7 @@ const storage = new GridFsStorage({
           category: req.query.category,
           month: req.query.month,
           year: req.query.year,
+          endDate: new Date(req.query.endDate),
         },
       };
       resolve(fileInfo);

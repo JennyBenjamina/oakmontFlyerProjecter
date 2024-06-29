@@ -5,8 +5,38 @@ import { dirname } from "path";
 import { fileURLToPath } from "url";
 import { conn, upload, gfs } from "./database.mjs";
 import mongodb from "mongodb";
+import cron from "node-cron";
 const port = process.env.PORT || 5000;
 const app = express();
+
+// Function to delete files based on endDate
+async function deleteExpiredFiles() {
+  const currentDate = new Date();
+
+  try {
+    // const file = await gfs.files.find({ _id: objId }).toArray();
+    const filesToUPdate = await gfs.files
+      .find({ "metadata.endDate": { $lt: currentDate } })
+      .toArray();
+
+    if (filesToUPdate.length > 0) {
+      await gfs.files.updateMany(
+        {
+          "metadata.endDate": { $lt: currentDate }, // Ensures only files with future endDates are updated
+        },
+        { $set: { "metadata.category": "archive" } }
+      );
+      console.log("files greater than 0");
+    }
+  } catch (err) {
+    console.log("error on server");
+  }
+
+  console.log("Expired files deleted, remaining files:");
+}
+
+// Schedule the cron job to run every minute
+cron.schedule("30 1 * * *", deleteExpiredFiles);
 
 const devFrontend = "*"; // replace with your dev server address
 const prodFrontend = "https://octopus-app-39r48.ondigitalocean.app";
