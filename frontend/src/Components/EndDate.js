@@ -12,7 +12,7 @@ function EndDate({ onEndDateChange }) {
 
   return (
     <div className="form-group">
-      <label>Termination of Event Date: </label>
+      <label>Remove By: </label>
       <DatePicker
         selected={startDate}
         onChange={handleChange}

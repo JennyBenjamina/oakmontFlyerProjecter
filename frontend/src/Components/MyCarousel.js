@@ -8,7 +8,6 @@ import axios from "axios";
 import DateComponent from "./DateComponent";
 
 const MyCarousel = ({ category, setIsLoading }) => {
-  const [fullscreen, setFullscreen] = useState(true);
   const [show, setShow] = useState(true);
 
   const [images, setImages] = useState([]);
@@ -46,11 +45,10 @@ const MyCarousel = ({ category, setIsLoading }) => {
           `${process.env.REACT_APP_SERVER_URL}/images?month=${month}&year=${year}&category=${category}`
         )
         .then((response) => {
-          console.log(response.data);
           if (response.data === "No files found") {
             setImages(["No files found"]);
 
-            console.log("images", images);
+            console.log("no images", images);
             setTimeout(() => {
               setShowCarousel(false);
             }, 3000); // 3000 milliseconds = 3 seconds
@@ -69,14 +67,12 @@ const MyCarousel = ({ category, setIsLoading }) => {
     event.preventDefault();
     setShowCarousel(true);
     setShow(true);
-    console.log(showCarousel);
   };
 
   const handleClose = () => {
     setShow(false);
     setShowCarousel(false);
   };
-  const handleShow = () => setShow(true);
 
   return (
     <>
@@ -88,15 +84,15 @@ const MyCarousel = ({ category, setIsLoading }) => {
           type="button"
           onClick={handleSubmit}
         >
-          Submit
+          Present
         </Button>
       </div>
       {showCarousel ? (
         <Modal show={show} onHide={handleClose} fullscreen={true}>
-          <Modal.Body animation={true}>
+          <Modal.Body>
             <Carousel
               interval={3500}
-              indicators={false}
+              indicators={true}
               controls={false}
               fade={true}
             >

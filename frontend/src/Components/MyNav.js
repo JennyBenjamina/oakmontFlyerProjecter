@@ -9,15 +9,19 @@ const MyNav = () => {
   return (
     <Navbar className="navbar-custom " expand="lg">
       <Container>
-        <LinkContainer to="/" style={{ cursor: "pointer" }}>
-          <Navbar.Brand>
-            <img
-              src={logoImage}
-              alt="logo"
-              style={{ height: "200px", width: "200px" }}
-            />
-          </Navbar.Brand>
-        </LinkContainer>
+        {/* <LinkContainer to="/" style={{ cursor: "pointer" }}> */}
+        <Navbar.Brand
+          href="https://oakmontcc.com"
+          target="_blank"
+          style={{ cursor: "pointer" }}
+        >
+          <img
+            src={logoImage}
+            alt="logo"
+            style={{ height: "200px", width: "200px" }}
+          />
+        </Navbar.Brand>
+        {/* </LinkContainer> */}
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse
           id="basic-navbar-nav"
@@ -42,7 +46,7 @@ const MyNav = () => {
           </Nav>
           <Nav className="last-nav">
             <LinkContainer to="/edit_photos" style={{ cursor: "pointer" }}>
-              <Nav.Link>Edit Photos</Nav.Link>
+              <Nav.Link>Remove Flyers</Nav.Link>
             </LinkContainer>
           </Nav>
         </Navbar.Collapse>

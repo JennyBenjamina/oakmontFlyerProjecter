@@ -174,7 +174,7 @@ app.get("/images/:filename", async (req, res) => {
       })
       .pipe(res);
 
-    console.log(files);
+    console.log("uploading");
   } catch (error) {
     console.error("Error getting ObjectIDs:", error);
   }

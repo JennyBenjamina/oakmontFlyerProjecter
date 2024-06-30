@@ -29,7 +29,11 @@ function InputFiles({ onFileChange, load, setLoad }) {
             <Modal.Title>Please be patient...</Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            <Spinner animation="border" variant="danger" />
+            <Spinner
+              animation="border"
+              variant="success"
+              style={{ marginLeft: "50px" }}
+            />
           </Modal.Body>
           <Modal.Footer>
             <Button variant="secondary" onClick={() => setLoad(false)}>
