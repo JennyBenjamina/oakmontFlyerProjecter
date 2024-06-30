@@ -66,7 +66,7 @@ footer img {
 .navbar::after {
   content: "";
   display: block;
-  height: 0.5px; /* Thickness of the underline */
+  height: 0.3px; /* Thickness of the underline */
   background-color: brown; /* Color of the underline */
   width: 72%; /* Adjust the width as needed */
   position: absolute;
