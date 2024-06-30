@@ -54,7 +54,7 @@ function EditPhotos({ setIsLoading }) {
   };
 
   return (
-    <div className="files-upload">
+    <div className="files-upload Home">
       <h1>Edit Photos</h1>
       <div className="m-3">
         <Form.Select onChange={handleCategoryChange} value={category}>

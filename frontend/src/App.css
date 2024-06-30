@@ -22,7 +22,15 @@ body {
   text-transform: uppercase;
 }
 
-.nav-link::after {
+.list-unstyled a {
+  position: relative;
+  text-decoration: none;
+  color: brown !important;
+  text-transform: uppercase;
+}
+
+.nav-link::after,
+.list-unstyled a::after {
   content: "";
   position: absolute;
   width: 0;
@@ -33,7 +41,42 @@ body {
   transition: width 0.3s;
 }
 
-.nav-link:hover::after {
+footer {
+  position: relative;
+  margin-top: 7rem;
+}
+
+footer::before {
+  content: "";
+  display: block;
+  height: 0.5px; /* Thickness of the line */
+  background-color: brown; /* Color of the line */
+  width: 72%; /* Adjust the width as needed */
+  position: absolute;
+  top: 0; /* Position at the top of the footer */
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+footer img {
+  max-width: 60%;
+  height: auto;
+}
+
+.navbar::after {
+  content: "";
+  display: block;
+  height: 0.5px; /* Thickness of the underline */
+  background-color: brown; /* Color of the underline */
+  width: 72%; /* Adjust the width as needed */
+  position: absolute;
+  bottom: -5px; /* Distance from the bottom of the element */
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.nav-link:hover::after,
+.list-unstyled a:hover::after {
   width: 100%;
 }
 
@@ -53,4 +96,9 @@ body {
 .modal-body {
   padding: 0 !important;
   overflow: hidden !important;
+}
+
+.Home,
+.Home-left-box {
+  margin-top: 5rem;
 }

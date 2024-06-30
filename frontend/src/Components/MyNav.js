@@ -24,6 +24,9 @@ const MyNav = () => {
           className="justify-content-around"
         >
           <Nav>
+            <LinkContainer to="/" style={{ cursor: "pointer" }}>
+              <Nav.Link>Home</Nav.Link>
+            </LinkContainer>
             <LinkContainer to="/mens_events" style={{ cursor: "pointer" }}>
               <Nav.Link>Men</Nav.Link>
             </LinkContainer>

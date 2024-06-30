@@ -7,6 +7,7 @@ import Women from "./Pages/Women";
 import Etiquette from "./Pages/Etiquette";
 import Misc from "./Pages/Misc";
 import EditPhotos from "./Pages/EditPhotos";
+import Footer from "./Components/Footer";
 
 const App = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -35,6 +36,7 @@ const App = () => {
         />
         <Route path="/misc" element={<Misc setIsLoading={setIsLoading} />} />
       </Routes>
+      <Footer />
     </BrowserRouter>
   );
 };
