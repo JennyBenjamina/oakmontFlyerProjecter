@@ -80,7 +80,8 @@ footer img {
   width: 100%;
 }
 
-.last-nav .nav-link:last-child {
+.last-nav .nav-link:last-child,
+.nav-link:first-child {
   color: darkgreen !important;
 }
 

@@ -1,6 +1,5 @@
-import React, { useState } from "react";
+import React from "react";
 import Form from "react-bootstrap/Form";
-import axios from "axios";
 import { Button, Modal, Spinner } from "react-bootstrap";
 
 function InputFiles({ onFileChange, load, setLoad }) {

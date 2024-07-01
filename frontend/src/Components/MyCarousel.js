@@ -7,7 +7,7 @@ import Modal from "react-bootstrap/Modal";
 import axios from "axios";
 import DateComponent from "./DateComponent";
 
-const MyCarousel = ({ category, setIsLoading }) => {
+const MyCarousel = ({ category }) => {
   const [show, setShow] = useState(true);
 
   const [images, setImages] = useState([]);
@@ -55,7 +55,7 @@ const MyCarousel = ({ category, setIsLoading }) => {
             return;
           }
           setImages(response.data);
-          setIsLoading(false);
+          // setIsLoading(false);
         })
         .catch((error) => {
           console.log("err", error);

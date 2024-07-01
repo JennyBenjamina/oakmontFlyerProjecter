@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Button, Form, ListGroup, Card } from "react-bootstrap";
 
 import DateComponent from "../Components/DateComponent";
@@ -55,7 +55,7 @@ function EditPhotos({ setIsLoading }) {
 
   return (
     <div className="files-upload Home">
-      <h1>Edit Photos</h1>
+      <h1>Remove Photos</h1>
       <div className="m-3">
         <Form.Select onChange={handleCategoryChange} value={category}>
           {categories.map((category, index) => (

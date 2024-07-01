@@ -10,31 +10,16 @@ import EditPhotos from "./Pages/EditPhotos";
 import Footer from "./Components/Footer";
 
 const App = () => {
-  const [isLoading, setIsLoading] = useState(true);
-
   return (
     <BrowserRouter>
-      {/* {isLoading ? <MyNav /> : null} */}
       <MyNav />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route
-          path="/edit_photos"
-          element={<EditPhotos setIsLoading={setIsLoading} />}
-        />
-        <Route
-          path="/mens_events"
-          element={<Men setIsLoading={setIsLoading} />}
-        />
-        <Route
-          path="/womens_events"
-          element={<Women setIsLoading={setIsLoading} />}
-        />
-        <Route
-          path="/etiquette"
-          element={<Etiquette setIsLoading={setIsLoading} />}
-        />
-        <Route path="/misc" element={<Misc setIsLoading={setIsLoading} />} />
+        <Route path="/edit_photos" element={<EditPhotos />} />
+        <Route path="/mens_events" element={<Men />} />
+        <Route path="/womens_events" element={<Women />} />
+        <Route path="/etiquette" element={<Etiquette />} />
+        <Route path="/misc" element={<Misc />} />
       </Routes>
       <Footer />
     </BrowserRouter>

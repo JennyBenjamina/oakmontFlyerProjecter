@@ -154,18 +154,18 @@ app.get("/images", async (req, res) => {
   }
 });
 
-app.get("/images/:filename", async (req, res) => {
+app.get("/images/:filename", (req, res) => {
   const { filename } = req.params;
   const bucket = new mongodb.GridFSBucket(conn.db, {
     bucketName: "uploads",
   });
 
   try {
-    const files = await conn.db
-      .collection("uploads.files")
-      .find({ filename: filename })
-      .toArray();
-    console.log(files);
+    // const files = await conn.db
+    //   .collection("uploads.files")
+    //   .find({ filename: filename })
+    //   .toArray();
+    // console.log(files);
 
     bucket
       .openDownloadStreamByName(filename)

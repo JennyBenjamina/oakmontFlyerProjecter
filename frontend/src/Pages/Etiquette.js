@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import MyCarousel from "../Components/MyCarousel";
 
 function Etiquette({ setIsLoading }) {
