@@ -1,6 +1,7 @@
 import React from "react";
 import { Container, Row, Col, Image } from "react-bootstrap";
 import logoImage from "../assets/logo-footer.png";
+import pgaSVG from "../assets/pga.svg";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 const Footer = () => {
@@ -8,10 +9,10 @@ const Footer = () => {
     <footer className="py-3 ">
       <Container>
         <Row className="align-items-center">
-          <Col xs={12} md={4}>
+          <Col xs={12} md={3}>
             <Image src={logoImage} alt="Company Logo" />
           </Col>
-          <Col xs={6} md={4}>
+          <Col xs={12} md={3}>
             <h5>Links</h5>
             <ul className="list-unstyled">
               <li>
@@ -28,7 +29,7 @@ const Footer = () => {
               </li>
             </ul>
           </Col>
-          <Col xs={6} md={4}>
+          <Col xs={12} md={3}>
             <h5>Follow Us</h5>
             <ul className="list-unstyled">
               <li>
@@ -41,6 +42,9 @@ const Footer = () => {
                 <a href="https://www.instagram.com/yourcompany">Instagram</a>
               </li>
             </ul>
+          </Col>
+          <Col xs={12} md={3}>
+            <Image src={pgaSVG} alt="PGA Logo" />
           </Col>
         </Row>
         <Row>
