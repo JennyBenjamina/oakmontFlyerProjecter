@@ -1,15 +1,16 @@
 import React, { useState } from "react";
 import { Button, Form, ListGroup, Card } from "react-bootstrap";
-
+import { Spinner } from "react-bootstrap";
 import DateComponent from "../Components/DateComponent";
 import axios from "axios";
 
-function EditPhotos({ setIsLoading }) {
+function EditPhotos() {
   const [photos, setPhotos] = useState([]);
   const [month, setMonth] = useState(1);
   const [year, setYear] = useState(2024);
-  const categories = ["men", "women", "misc", "etiquette"];
+  const categories = ["men", "women", "misc", "etiquette", "all"];
   const [category, setCategory] = useState(categories[0]);
+  const [loading, setLoading] = useState(false);
 
   const handleDelete = (photo) => {
     axios
@@ -35,6 +36,7 @@ function EditPhotos({ setIsLoading }) {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    setLoading(true);
     axios
       .get(
         `${process.env.REACT_APP_SERVER_URL}/imageNames?month=${month}&year=${year}&category=${category}`
@@ -42,11 +44,12 @@ function EditPhotos({ setIsLoading }) {
       .then((response) => {
         if (response.data === "No files found") {
           setPhotos([]);
+          setLoading(false);
           return;
         }
         setPhotos(response.data);
+        setLoading(false);
         console.log("photos", response.data);
-        setIsLoading(false);
       })
       .catch((error) => {
         console.log("err", error);
@@ -78,7 +81,7 @@ function EditPhotos({ setIsLoading }) {
         <Card className="m-3">
           <Card.Header>Photos</Card.Header>
           <Card.Body>
-            {photos.map((photo, index) => (
+            {/* {photos.map((photo, index) => (
               <ListGroup
                 key={index}
                 horizontal
@@ -98,7 +101,37 @@ function EditPhotos({ setIsLoading }) {
                   Delete
                 </Button>
               </ListGroup>
-            ))}
+            ))} */}
+
+            {loading ? (
+              <Spinner animation="border" role="status">
+                <span className="visually-hidden">Loading...</span>
+              </Spinner>
+            ) : photos.length > 0 ? (
+              photos.map((photo, index) => (
+                <ListGroup
+                  key={index}
+                  horizontal
+                  className="justify-content-between m-3"
+                  style={{
+                    padding: "1rem",
+                  }}
+                >
+                  <ListGroup.Item className="m-2">
+                    {photo.filename}
+                  </ListGroup.Item>
+                  <Button
+                    className="m-2"
+                    variant="danger"
+                    onClick={() => handleDelete(photo)}
+                  >
+                    Delete
+                  </Button>
+                </ListGroup>
+              ))
+            ) : (
+              <div>No photos available.</div>
+            )}
           </Card.Body>
         </Card>
       </div>

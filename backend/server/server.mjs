@@ -74,23 +74,40 @@ app.get("/imageNames", async (req, res) => {
   const category = req.query.category;
   const month = req.query.month;
   const year = req.query.year;
-
+  let fileNames = [];
   try {
-    let files = await gfs.files
-      .find({
-        "metadata.category": category,
-        "metadata.month": month,
-        "metadata.year": year,
-      })
-      .toArray();
-    const fileNames = files.map((file) => file.filename);
+    if (req.query.category === "all") {
+      let files = await gfs.files
+        .find({
+          "metadata.month": month,
+          "metadata.year": year,
+        })
+        .toArray();
+      fileNames = files.map((file) => file.filename);
 
-    if (fileNames.length > 0) {
-      res.send(files);
+      if (fileNames.length > 0) {
+        res.send(files);
+      } else {
+        res.send("No files found");
+      }
     } else {
-      res.send("No files found");
+      let files = await gfs.files
+        .find({
+          "metadata.category": category,
+          "metadata.month": month,
+          "metadata.year": year,
+        })
+        .toArray();
+      fileNames = files.map((file) => file.filename);
+
+      if (fileNames.length > 0) {
+        res.send(files);
+      } else {
+        res.send("No files found");
+      }
     }
   } catch (err) {
+    console.log("error", err);
     res.send(err);
   }
 });
@@ -161,20 +178,12 @@ app.get("/images/:filename", (req, res) => {
   });
 
   try {
-    // const files = await conn.db
-    //   .collection("uploads.files")
-    //   .find({ filename: filename })
-    //   .toArray();
-    // console.log(files);
-
     bucket
       .openDownloadStreamByName(filename)
       .on("error", () => {
         res.status(404).send(`No file with the name ${filename}`);
       })
       .pipe(res);
-
-    console.log("uploading");
   } catch (error) {
     console.error("Error getting ObjectIDs:", error);
   }

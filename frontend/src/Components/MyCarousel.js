@@ -55,7 +55,6 @@ const MyCarousel = ({ category }) => {
             return;
           }
           setImages(response.data);
-          // setIsLoading(false);
         })
         .catch((error) => {
           console.log("err", error);
@@ -72,6 +71,12 @@ const MyCarousel = ({ category }) => {
   const handleClose = () => {
     setShow(false);
     setShowCarousel(false);
+  };
+
+  const [index, setIndex] = useState(0);
+
+  const handleSelect = (selectedIndex) => {
+    setIndex(selectedIndex);
   };
 
   return (
@@ -91,6 +96,8 @@ const MyCarousel = ({ category }) => {
         <Modal show={show} onHide={handleClose} fullscreen={true}>
           <Modal.Body>
             <Carousel
+              activeIndex={index}
+              onSelect={handleSelect}
               interval={3500}
               indicators={true}
               controls={false}
