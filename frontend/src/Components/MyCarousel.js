@@ -8,6 +8,21 @@ import axios from "axios";
 import DateComponent from "./DateComponent";
 
 const MyCarousel = ({ category }) => {
+  {
+    /* <div>
+          <video
+            src="https://d14dew3747d7ve.cloudfront.net/123/58bbb7b5-4d05-4840-9b4f-e93cfa0f2080"
+            // controls
+            muted
+            autoPlay
+            loop
+            preload="auto"
+            width="640"
+            height="360"
+          />
+        </div> */
+  }
+
   const [show, setShow] = useState(true);
 
   const [images, setImages] = useState([]);
@@ -108,7 +123,7 @@ const MyCarousel = ({ category }) => {
                   <Carousel.Item key={index}>
                     <img
                       className="d-block "
-                      src={`${process.env.REACT_APP_SERVER_URL}/images/${image}`}
+                      src={`https://d14dew3747d7ve.cloudfront.net/${image}`}
                       alt={`Slide ${index + 1}`}
                       style={{
                         height: "100vh",

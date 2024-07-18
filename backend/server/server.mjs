@@ -1,10 +1,9 @@
 import express from "express";
 import cors from "cors";
-import multer from "multer";
-import { dirname } from "path";
-import { fileURLToPath } from "url";
-import { conn, upload, gfs } from "./database.mjs";
-import mongodb from "mongodb";
+import { upload, addMetadata } from "./database.mjs";
+import Photo from "../models/photo.mjs";
+
+import { uploadToS3 } from "./s3.mjs";
 import cron from "node-cron";
 const port = process.env.PORT || 5000;
 const app = express();
@@ -14,20 +13,12 @@ async function deleteExpiredFiles() {
   const currentDate = new Date();
 
   try {
-    // const file = await gfs.files.find({ _id: objId }).toArray();
-    const filesToUPdate = await gfs.files
-      .find({ "metadata.endDate": { $lt: currentDate } })
-      .toArray();
+    let updatedFile = await Photo.updateMany(
+      { endDate: { $lt: currentDate } },
+      { $set: { category: "archive" } } // Update the category to "archive"
+    );
 
-    if (filesToUPdate.length > 0) {
-      await gfs.files.updateMany(
-        {
-          "metadata.endDate": { $lt: currentDate }, // Ensures only files with future endDates are updated
-        },
-        { $set: { "metadata.category": "archive" } }
-      );
-      console.log("files greater than 0");
-    }
+    console.log(updatedFile);
   } catch (err) {
     console.log("error on server");
   }
@@ -37,13 +28,6 @@ async function deleteExpiredFiles() {
 
 // Schedule the cron job to run every minute
 cron.schedule("30 1 * * *", deleteExpiredFiles);
-
-const devFrontend = "*"; // replace with your dev server address
-const prodFrontend = "https://octopus-app-39r48.ondigitalocean.app";
-
-// Use the NODE_ENV to determine the current environment
-const frontendUrl =
-  process.env.NODE_ENV === "production" ? prodFrontend : devFrontend;
 
 app.use(
   cors({
@@ -66,101 +50,37 @@ app.get("/", (req, res) => {
   res.send("Hello World");
 });
 
-app.post("/addFile", upload.single("img"), async (req, res) => {
-  res.json(req.file);
+app.post("/addFile", upload.single("img"), addMetadata, async (req, res) => {
+  const { error, imgName } = uploadToS3({
+    file: req.file,
+    userId: "123",
+    key: req.photoKey,
+  });
+
+  res.send("success");
 });
 
 app.get("/imageNames", async (req, res) => {
   const category = req.query.category;
   const month = req.query.month;
   const year = req.query.year;
-  let fileNames = [];
+
   try {
+    let files = [];
     if (req.query.category === "all") {
-      let files = await gfs.files
-        .find({
-          "metadata.month": month,
-          "metadata.year": year,
-        })
-        .toArray();
-      fileNames = files.map((file) => file.filename);
-
-      if (fileNames.length > 0) {
-        res.send(files);
-      } else {
-        res.send("No files found");
-      }
+      files = await Photo.find({
+        month: month,
+        year: year,
+      });
     } else {
-      let files = await gfs.files
-        .find({
-          "metadata.category": category,
-          "metadata.month": month,
-          "metadata.year": year,
-        })
-        .toArray();
-      fileNames = files.map((file) => file.filename);
-
-      if (fileNames.length > 0) {
-        res.send(files);
-      } else {
-        res.send("No files found");
-      }
-    }
-  } catch (err) {
-    console.log("error", err);
-    res.send(err);
-  }
-});
-
-import { ObjectId } from "mongodb";
-
-app.delete("/deleteFile", async (req, res) => {
-  const id = req.body.id; // Get the id from the request body
-  console.log(req.body.filename);
-  try {
-    // Check if file exists in the db
-    const objId = new ObjectId(id);
-    // const file = await gfs.files.find({ _id: objId }).toArray();
-    const file = await gfs.files
-      .find({ filename: req.body.filename })
-      .toArray();
-
-    console.log(file);
-    if (!file) {
-      return res.status(404).send({ message: "File not found." });
+      files = await Photo.find({
+        category: category,
+        month: month,
+        year: year,
+      });
     }
 
-    await gfs.files.updateMany(
-      { filename: req.body.filename },
-      { $set: { "metadata.category": "archive" } }
-    );
-
-    res.send({ message: "File deleted successfully." });
-  } catch (err) {
-    res
-      .status(500)
-      .send({ message: "An error occurred while deleting the file." });
-  }
-});
-
-// dates
-const date = new Date();
-
-app.get("/images", async (req, res) => {
-  const category = req.query.category;
-  const month = req.query.month;
-  const year = req.query.year;
-
-  try {
-    let files = await gfs.files
-      .find({
-        "metadata.category": category,
-        "metadata.month": month,
-        "metadata.year": year,
-      })
-      .toArray();
-    const fileNames = files.map((file) => file.filename);
-
+    const fileNames = files.map((file) => file.imageUrl);
     if (fileNames.length > 0) {
       res.send(fileNames);
     } else {
@@ -171,21 +91,48 @@ app.get("/images", async (req, res) => {
   }
 });
 
-app.get("/images/:filename", (req, res) => {
-  const { filename } = req.params;
-  const bucket = new mongodb.GridFSBucket(conn.db, {
-    bucketName: "uploads",
-  });
+app.delete("/deleteFile", async (req, res) => {
+  console.log(req.body);
+  try {
+    let updatedFile = await Photo.findOneAndUpdate(
+      { imageUrl: req.body.filename }, // Assuming req.body.imageUrl contains the imageUrl
+      { $set: { category: "archive" } }, // Update the category to "archive"
+      { new: true } // Return the updated document
+    );
+
+    console.log(updatedFile);
+    if (!updatedFile) {
+      return res.status(404).send({ message: "File not found." });
+    }
+
+    res.send({ message: "File deleted successfully." });
+  } catch (err) {
+    res
+      .status(500)
+      .send({ message: "An error occurred while deleting the file." });
+  }
+});
+
+app.get("/images", async (req, res) => {
+  const category = req.query.category;
+  const month = req.query.month;
+  const year = req.query.year;
 
   try {
-    bucket
-      .openDownloadStreamByName(filename)
-      .on("error", () => {
-        res.status(404).send(`No file with the name ${filename}`);
-      })
-      .pipe(res);
-  } catch (error) {
-    console.error("Error getting ObjectIDs:", error);
+    let files = await Photo.find({
+      category: category,
+      month: month,
+      year: year,
+    });
+    const fileNames = files.map((file) => file.imageUrl);
+
+    if (fileNames.length > 0) {
+      res.send(fileNames);
+    } else {
+      res.send("No files found");
+    }
+  } catch (err) {
+    res.send(err);
   }
 });
 

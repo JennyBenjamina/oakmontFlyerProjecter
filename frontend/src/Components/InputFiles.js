@@ -13,11 +13,11 @@ function InputFiles({ onFileChange, load, setLoad }) {
     <div className="input-files-container">
       <Form encType="multipart/form-data">
         <Form.Group className="mb-3" controlId="lecturePdf">
-          <Form.Label>Flyer photos (JPG or PNG)</Form.Label>
+          <Form.Label>Flyer photos (JPG PNG MP4 MOV)</Form.Label>
           <Form.Control
             type="file"
             placeholder="Upload flyers"
-            accept=".jpg, .jpeg, .png, .pdf"
+            accept=".jpg, .jpeg, .png, .pdf, .mov, .mp4"
             onChange={handleFileUpload}
           />
         </Form.Group>

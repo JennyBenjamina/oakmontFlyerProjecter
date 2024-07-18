@@ -1,47 +1,41 @@
 import mongoose from "mongoose";
-import Grid from "gridfs-stream";
-import { GridFsStorage } from "multer-gridfs-storage";
-import multer from "multer";
+import multer, { memoryStorage } from "multer";
+import Photo from "../models/photo.mjs";
+import { v4 as uuid } from "uuid";
 import dotenv from "dotenv";
 dotenv.config();
 
-const conn = mongoose.createConnection(process.env.MONGODB_URI, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-});
+const conn = mongoose
+  .connect(process.env.MONGODB_URI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  })
+  .then(() => {
+    console.log("monogoDB connected");
+  })
+  .catch((err) => {
+    console.log(err);
+  });
 
-let gfs;
-conn.once("open", () => {
-  gfs = Grid(conn.db, mongoose.mongo);
-  gfs.collection("uploads");
-});
+const storageMemory = memoryStorage();
 
-const storage = new GridFsStorage({
-  url: process.env.MONGODB_URI,
-  file: (req, file) => {
-    return new Promise((resolve, reject) => {
-      const filename = file.originalname;
-      const fileInfo = {
-        filename: filename,
-        bucketName: "uploads",
-        metadata: {
-          category: req.query.category,
-          month: req.query.month,
-          year: req.query.year,
-          endDate: new Date(req.query.endDate),
-        },
-      };
-      resolve(fileInfo);
+const upload = multer({ storageMemory }); // using storageMemory allows for the buffer key to show up. Otherwise, it's the ObjectId
+
+// Middleware to add metadata to the file object
+async function addMetadata(req, res, next) {
+  if (req.file) {
+    const key = `${req.query.category}/${uuid()}`;
+    req.photoKey = key;
+    const photoFile = new Photo({
+      category: req.query.category,
+      month: req.query.month,
+      year: req.query.year,
+      endDate: new Date(req.query.endDate),
+      imageUrl: key,
     });
-  },
-});
+    await photoFile.save();
+  }
+  next();
+}
 
-storage.on("error", (error) => {
-  console.error(error);
-});
-
-const upload = multer({ storage });
-
-console.log("Database connected successfully!");
-
-export { conn, upload, gfs };
+export { upload, addMetadata };

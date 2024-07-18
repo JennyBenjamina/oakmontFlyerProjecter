@@ -15,7 +15,7 @@ function EditPhotos() {
   const handleDelete = (photo) => {
     axios
       .delete(`${process.env.REACT_APP_SERVER_URL}/deleteFile`, {
-        data: { id: photo.id, filename: photo.filename },
+        data: { filename: photo },
       })
       .then(() => {
         setPhotos(photos.filter((p) => p._id !== photo._id));
@@ -47,6 +47,7 @@ function EditPhotos() {
           setLoading(false);
           return;
         }
+        console.log(response.data);
         setPhotos(response.data);
         setLoading(false);
         console.log("photos", response.data);
@@ -90,9 +91,7 @@ function EditPhotos() {
                   padding: "1rem",
                 }}
               >
-                <ListGroup.Item className="m-2">
-                  {photo.filename}
-                </ListGroup.Item>
+                <ListGroup.Item className="m-2">{photo}</ListGroup.Item>
                 <Button
                   className="m-2"
                   variant="danger"
@@ -117,9 +116,7 @@ function EditPhotos() {
                     padding: "1rem",
                   }}
                 >
-                  <ListGroup.Item className="m-2">
-                    {photo.filename}
-                  </ListGroup.Item>
+                  <ListGroup.Item className="m-2">{photo}</ListGroup.Item>
                   <Button
                     className="m-2"
                     variant="danger"

@@ -3,7 +3,7 @@ import InputFiles from "../Components/InputFiles";
 import { useState } from "react";
 import DateComponent from "../Components/DateComponent";
 import Category from "../Components/Category";
-import { Button } from "react-bootstrap";
+import { Button, Toast } from "react-bootstrap";
 import axios from "axios";
 import EndDate from "../Components/EndDate";
 
@@ -16,6 +16,7 @@ function Home() {
   const [category, setCategory] = useState("men"); // default category
   const [load, setLoad] = useState(false);
   const [endDate, setEndDate] = useState(new Date());
+  const [showToast, setShowToast] = useState(false);
 
   const handleDateChange = (date) => {
     console.log("handl date change: ", date);
@@ -44,7 +45,11 @@ function Home() {
       setLoad(true);
       const formData = new FormData();
       formData.append("img", file);
-      console.log("file", file);
+      const description = `${month}-${year}-${category}`;
+      formData.append("description", description);
+      formData.append("endDate", endDate);
+
+      console.log("category", category);
 
       axios
         .post(
@@ -53,7 +58,7 @@ function Home() {
         ) // this was formData
         .then((response) => {
           // handle the response
-          console.log(response);
+          setShowToast(true);
           setLoad(false);
         })
         .catch((error) => {
@@ -87,6 +92,19 @@ function Home() {
             setLoad={setLoad}
           />
 
+          <Toast
+            onClose={() => setShowToast(false)}
+            show={showToast}
+            delay={3000}
+            autohide
+            bg="warning"
+            style={{ marginBottom: "1rem" }}
+          >
+            <Toast.Header>
+              <strong className="mr-auto">Image Upload</strong>
+            </Toast.Header>
+            <Toast.Body>Successfully Uploaded</Toast.Body>
+          </Toast>
           <Button variant="success" type="button" onClick={handleFileUpload}>
             Upload File
           </Button>
