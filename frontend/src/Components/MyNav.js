@@ -11,14 +11,14 @@ const MyNav = () => {
       <Container>
         {/* <LinkContainer to="/" style={{ cursor: "pointer" }}> */}
         <Navbar.Brand
-          href="https://oakmontcc.com"
+          href="https://JennyLee.Golf"
           target="_blank"
           style={{ cursor: "pointer" }}
         >
           <img
             src={logoImage}
             alt="logo"
-            style={{ height: "200px", width: "200px" }}
+            style={{ height: "100px", width: "100px" }}
           />
         </Navbar.Brand>
         {/* </LinkContainer> */}
