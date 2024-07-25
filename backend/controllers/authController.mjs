@@ -39,10 +39,10 @@ const handleLogin = async (req, res) => {
         process.env.REFRESH_TOKEN_SECRET,
         { expiresIn: "1d" }
       );
-      console.log("refresh token", refreshToken);
-      // // Saving refreshToken with current user
-      // foundUser.refreshToken = refreshToken;
-      // const result = await foundUser.save();
+      // Saving refreshToken with current user
+      foundUser.refreshToken = refreshToken;
+      const result = await foundUser.save();
+      console.log("result", result);
       // console.log(result);
       // console.log(roles);
     } catch (err) {
