@@ -45,27 +45,22 @@ const handleLogin = async (req, res) => {
       console.log("result", result);
       // console.log(result);
       // console.log(roles);
-    } catch (err) {
-      return res.status(501).send("Error in tokens");
-    }
-  }
-  try {
-    // Creates Secure Cookie with refresh token
-    res.cookie("jwt", refreshToken, {
-      httpOnly: true,
-      secure: true,
-      sameSite: "None",
-      maxAge: 24 * 60 * 60 * 1000,
-    });
-  } catch (err) {
-    return res.sendStatus(504);
-  }
 
-  //   // Send authorization roles and access token to user
-  //   res.json({ roles, accessToken, isAuthenticated: true });
-  // } else {
-  //   res.sendStatus(401);
-  // }
+      // Creates Secure Cookie with refresh token
+      res.cookie("jwt", refreshToken, {
+        httpOnly: true,
+        secure: true,
+        sameSite: "None",
+        maxAge: 24 * 60 * 60 * 1000,
+      });
+      // Send authorization roles and access token to user
+      res.json({ roles, accessToken, isAuthenticated: true });
+    } catch (err) {
+      return res.sendStatus(504);
+    }
+  } else {
+    res.sendStatus(401);
+  }
 };
 
 export default handleLogin;
