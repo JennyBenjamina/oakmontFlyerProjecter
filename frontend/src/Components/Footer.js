@@ -9,7 +9,11 @@ const Footer = () => {
     <footer className="py-3 ">
       <Container>
         <Row className="align-items-center">
-          <Col xs={12} md={3}>
+          <Col
+            xs={12}
+            md={3}
+            className="footer_first_col d-flex justify-content-center"
+          >
             <Image src={logoImage} alt="Company Logo" />
           </Col>
           <Col xs={12} md={3}>
@@ -43,7 +47,7 @@ const Footer = () => {
               </li>
             </ul>
           </Col>
-          <Col xs={12} md={3}>
+          <Col xs={12} md={3} className="d-flex justify-content-center">
             <Image src={pgaSVG} alt="PGA Logo" />
           </Col>
         </Row>

@@ -164,4 +164,16 @@ footer img {
   .login_register_container {
     padding: 0 40px;
   }
+  .footer_first_col {
+    order: 4;
+  }
+  footer .list-unstyled {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+  }
+
+  footer h5 {
+    text-align: center;
+  }
 }
