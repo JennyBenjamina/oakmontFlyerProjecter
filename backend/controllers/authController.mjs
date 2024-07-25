@@ -34,12 +34,12 @@ const handleLogin = async (req, res) => {
         { expiresIn: "10s" }
       );
 
-      console.log("access token", accessToken);
-      // const refreshToken = jwt.sign(
-      //   { username: foundUser.username },
-      //   process.env.REFRESH_TOKEN_SECRET,
-      //   { expiresIn: "1d" }
-      // );
+      const refreshToken = jwt.sign(
+        { username: foundUser.username },
+        process.env.REFRESH_TOKEN_SECRET,
+        { expiresIn: "1d" }
+      );
+      console.log("refresh token", refreshToken);
       // // Saving refreshToken with current user
       // foundUser.refreshToken = refreshToken;
       // const result = await foundUser.save();
