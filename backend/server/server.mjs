@@ -19,10 +19,7 @@ dbConn();
 // allow all access for cors
 app.use(
   cors({
-    origin: [
-      "http://localhost:3000",
-      "https://king-prawn-app-2-jjatv.ondigitalocean.app",
-    ],
+    origin: ["http://localhost:3000", "https://alternateshotmarketing.com"],
     credentials: true,
   })
 );
