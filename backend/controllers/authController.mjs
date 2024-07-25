@@ -49,17 +49,17 @@ const handleLogin = async (req, res) => {
       return res.status(501).send("Error in tokens");
     }
   }
-  //   try {
-  //     // Creates Secure Cookie with refresh token
-  //     res.cookie("jwt", refreshToken, {
-  //       httpOnly: true,
-  //       secure: true,
-  //       sameSite: "None",
-  //       maxAge: 24 * 60 * 60 * 1000,
-  //     });
-  //   } catch (err) {
-  //     return res.sendStatus(504);
-  //   }
+  try {
+    // Creates Secure Cookie with refresh token
+    res.cookie("jwt", refreshToken, {
+      httpOnly: true,
+      secure: true,
+      sameSite: "None",
+      maxAge: 24 * 60 * 60 * 1000,
+    });
+  } catch (err) {
+    return res.sendStatus(504);
+  }
 
   //   // Send authorization roles and access token to user
   //   res.json({ roles, accessToken, isAuthenticated: true });
