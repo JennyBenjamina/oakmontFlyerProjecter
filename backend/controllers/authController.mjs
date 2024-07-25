@@ -22,6 +22,7 @@ const handleLogin = async (req, res) => {
     try {
       const roles = Object.values(foundUser.roles).filter(Boolean);
       console.log("roles", roles);
+
       // create JWTs
       // const accessToken = jwt.sign(
       //   {
@@ -46,7 +47,7 @@ const handleLogin = async (req, res) => {
     } catch (err) {
       return res.status(501).send("Error in tokens");
     }
-
+  }
   //   try {
   //     // Creates Secure Cookie with refresh token
   //     res.cookie("jwt", refreshToken, {
