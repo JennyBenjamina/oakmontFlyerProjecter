@@ -11,7 +11,7 @@ const handleLogin = async (req, res) => {
       .status(400)
       .json({ message: "Username and password are required." });
 
-  res.status(200).send("welcome");
+  // res.status(200).send("welcome");
 
   const foundUser = await User.findOne({ username: user }).exec();
   if (!foundUser) return res.sendStatus(401); //Unauthorized
@@ -53,6 +53,7 @@ const handleLogin = async (req, res) => {
         sameSite: "None",
         maxAge: 24 * 60 * 60 * 1000,
       });
+      console.log("roles", roles);
       // Send authorization roles and access token to user
       res.json({ roles, accessToken, isAuthenticated: true });
     } catch (err) {
