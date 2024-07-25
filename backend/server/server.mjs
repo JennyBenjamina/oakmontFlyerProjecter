@@ -17,9 +17,16 @@ const app = express();
 dbConn();
 
 // allow all access for cors
+// app.use(
+//   cors({
+//     origin: ["http://localhost:3000", "https://alternateshotmarketing.com"],
+//     credentials: true,
+//   })
+// );
+
 app.use(
   cors({
-    origin: ["http://localhost:3000", "https://alternateshotmarketing.com"],
+    origin: true,
     credentials: true,
   })
 );
