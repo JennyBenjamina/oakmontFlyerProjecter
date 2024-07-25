@@ -127,7 +127,7 @@ const Register = () => {
   return (
     <>
       {success ? (
-        <Container className="mt-5">
+        <Container className="mt-5 login_register_container">
           <Row className="justify-content-md-center">
             <Col xs={12} md={8}>
               <Alert variant="success">
@@ -140,7 +140,10 @@ const Register = () => {
           </Row>
         </Container>
       ) : (
-        <Container className="mt-5" style={{ maxWidth: "500px" }}>
+        <Container
+          className="mt-5 login_register_container"
+          style={{ maxWidth: "500px" }}
+        >
           <Row className="justify-content-md-center">
             <Col xs={12} md={8}>
               <p

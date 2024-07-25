@@ -159,3 +159,9 @@ footer img {
   width: 20px;
   margin: 5px 5px 2px 2px;
 }
+
+@media screen and (max-width: 600px) {
+  .login_register_container {
+    padding: 0 40px;
+  }
+}

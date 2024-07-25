@@ -75,7 +75,10 @@ const SignIn = () => {
 
   return (
     <>
-      <Container className="mt-5" style={{ maxWidth: "500px" }}>
+      <Container
+        className="mt-5 login_register_container"
+        style={{ maxWidth: "500px" }}
+      >
         {errMsg && (
           <Alert variant="danger" ref={errRef} aria-live="assertive">
             {errMsg}
