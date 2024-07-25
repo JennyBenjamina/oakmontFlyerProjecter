@@ -49,6 +49,7 @@ const handleLogin = async (req, res) => {
       httpOnly: true,
       secure: true,
       sameSite: "None",
+      domain: "alternateshotmarketing.com",
       maxAge: 24 * 60 * 60 * 1000,
     });
 
