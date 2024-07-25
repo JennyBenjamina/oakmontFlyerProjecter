@@ -23,7 +23,7 @@ const handleLogin = async (req, res) => {
     const match = await bcrypt.compare(pwd, foundUser.password);
   } catch (err) {
     console.log("error in match bcrypt");
-    return res.sendStatus(500);
+    return res.sendStatus(502);
   }
   if (match) {
     try {
@@ -51,15 +51,20 @@ const handleLogin = async (req, res) => {
       console.log(roles);
     } catch (err) {
       console.error("suuuuper error");
+      return res.sendStatus(501);
     }
 
-    // Creates Secure Cookie with refresh token
-    res.cookie("jwt", refreshToken, {
-      httpOnly: true,
-      secure: true,
-      sameSite: "None",
-      maxAge: 24 * 60 * 60 * 1000,
-    });
+    try {
+      // Creates Secure Cookie with refresh token
+      res.cookie("jwt", refreshToken, {
+        httpOnly: true,
+        secure: true,
+        sameSite: "None",
+        maxAge: 24 * 60 * 60 * 1000,
+      });
+    } catch (err) {
+      return res.sendStatus(504);
+    }
 
     // Send authorization roles and access token to user
     res.json({ roles, accessToken, isAuthenticated: true });
