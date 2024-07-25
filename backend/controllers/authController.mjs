@@ -18,34 +18,34 @@ const handleLogin = async (req, res) => {
 
   // evaluate password
   const match = await bcrypt.compare(pwd, foundUser.password);
-  console.log(match);
-  // if (match) {
-  //   try {
-  //     const roles = Object.values(foundUser.roles).filter(Boolean);
-  //     // create JWTs
-  //     const accessToken = jwt.sign(
-  //       {
-  //         UserInfo: {
-  //           username: foundUser.username,
-  //           roles: roles,
-  //         },
-  //       },
-  //       process.env.ACCESS_TOKEN_SECRET,
-  //       { expiresIn: "10s" }
-  //     );
-  //     const refreshToken = jwt.sign(
-  //       { username: foundUser.username },
-  //       process.env.REFRESH_TOKEN_SECRET,
-  //       { expiresIn: "1d" }
-  //     );
-  //     // Saving refreshToken with current user
-  //     foundUser.refreshToken = refreshToken;
-  //     const result = await foundUser.save();
-  //     console.log(result);
-  //     console.log(roles);
-  //   } catch (err) {
-  //     return res.status(501).send("Error in tokens");
-  //   }
+  if (match) {
+    try {
+      const roles = Object.values(foundUser.roles).filter(Boolean);
+      console.log("roles", roles);
+      // create JWTs
+      // const accessToken = jwt.sign(
+      //   {
+      //     UserInfo: {
+      //       username: foundUser.username,
+      //       roles: roles,
+      //     },
+      //   },
+      //   process.env.ACCESS_TOKEN_SECRET,
+      //   { expiresIn: "10s" }
+      // );
+      // const refreshToken = jwt.sign(
+      //   { username: foundUser.username },
+      //   process.env.REFRESH_TOKEN_SECRET,
+      //   { expiresIn: "1d" }
+      // );
+      // // Saving refreshToken with current user
+      // foundUser.refreshToken = refreshToken;
+      // const result = await foundUser.save();
+      // console.log(result);
+      // console.log(roles);
+    } catch (err) {
+      return res.status(501).send("Error in tokens");
+    }
 
   //   try {
   //     // Creates Secure Cookie with refresh token
