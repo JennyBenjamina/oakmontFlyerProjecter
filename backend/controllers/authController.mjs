@@ -21,19 +21,20 @@ const handleLogin = async (req, res) => {
   if (match) {
     try {
       const roles = Object.values(foundUser.roles).filter(Boolean);
-      console.log("roles", roles);
 
       // create JWTs
-      // const accessToken = jwt.sign(
-      //   {
-      //     UserInfo: {
-      //       username: foundUser.username,
-      //       roles: roles,
-      //     },
-      //   },
-      //   process.env.ACCESS_TOKEN_SECRET,
-      //   { expiresIn: "10s" }
-      // );
+      const accessToken = jwt.sign(
+        {
+          UserInfo: {
+            username: foundUser.username,
+            roles: roles,
+          },
+        },
+        process.env.ACCESS_TOKEN_SECRET,
+        { expiresIn: "10s" }
+      );
+
+      console.log("access token", accessToken);
       // const refreshToken = jwt.sign(
       //   { username: foundUser.username },
       //   process.env.REFRESH_TOKEN_SECRET,
