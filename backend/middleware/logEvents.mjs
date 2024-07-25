@@ -31,7 +31,8 @@ const logEvents = async (message, logName) => {
 };
 
 const logger = (req, res, next) => {
-  logEvents(`${req.method}\t${req.headers.origin}\t${req.url}`, "reqLog.txt");
+  const origin = req.headers.origin || "Origin not set";
+  logEvents(`${req.method}\t${origin}\t${req.url}`, "reqLog.txt");
   next();
 };
 
