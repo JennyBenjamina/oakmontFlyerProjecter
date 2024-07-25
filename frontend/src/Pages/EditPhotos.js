@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Button, Form, ListGroup, Card } from "react-bootstrap";
 import { Spinner } from "react-bootstrap";
 import DateComponent from "../Components/DateComponent";
-import axios from "axios";
+import axios from "../api/axios";
 
 function EditPhotos() {
   const [photos, setPhotos] = useState([]);
@@ -14,7 +14,7 @@ function EditPhotos() {
 
   const handleDelete = (photo) => {
     axios
-      .delete(`${process.env.REACT_APP_SERVER_URL}/deleteFile`, {
+      .delete("/deleteFile", {
         data: { filename: photo },
       })
       .then(() => {
@@ -38,9 +38,7 @@ function EditPhotos() {
     event.preventDefault();
     setLoading(true);
     axios
-      .get(
-        `${process.env.REACT_APP_SERVER_URL}/imageNames?month=${month}&year=${year}&category=${category}`
-      )
+      .get(`/imageNames?month=${month}&year=${year}&category=${category}`)
       .then((response) => {
         if (response.data === "No files found") {
           setPhotos([]);
@@ -82,26 +80,6 @@ function EditPhotos() {
         <Card className="m-3">
           <Card.Header>Photos</Card.Header>
           <Card.Body>
-            {/* {photos.map((photo, index) => (
-              <ListGroup
-                key={index}
-                horizontal
-                className="justify-content-between m-3"
-                style={{
-                  padding: "1rem",
-                }}
-              >
-                <ListGroup.Item className="m-2">{photo}</ListGroup.Item>
-                <Button
-                  className="m-2"
-                  variant="danger"
-                  onClick={() => handleDelete(photo)}
-                >
-                  Delete
-                </Button>
-              </ListGroup>
-            ))} */}
-
             {loading ? (
               <Spinner animation="border" role="status">
                 <span className="visually-hidden">Loading...</span>

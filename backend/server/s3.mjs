@@ -1,4 +1,8 @@
-import { S3Client, PutObjectCommand } from "@aws-sdk/client-s3";
+import {
+  S3Client,
+  PutObjectCommand,
+  DeleteObjectCommand,
+} from "@aws-sdk/client-s3";
 
 // if i want to resize before uploading to s3
 import sharp from "sharp";
@@ -30,6 +34,21 @@ export const uploadToS3 = async ({ file, userId, key }) => {
     Key: key,
     Body: file.buffer,
     ContentType: file.mimetype,
+  });
+
+  try {
+    await s3.send(command);
+    return { key };
+  } catch (err) {
+    console.log(err);
+    return { err };
+  }
+};
+
+export const deleteFroms3 = async (imageName) => {
+  const command = new DeleteObjectCommand({
+    Bucket: BUCKET,
+    Key: imageName,
   });
 
   try {

@@ -1,12 +1,11 @@
 import React from "react";
-import InputFiles from "../Components/InputFiles";
 import { useState } from "react";
+import InputFiles from "../Components/InputFiles";
 import DateComponent from "../Components/DateComponent";
 import Category from "../Components/Category";
 import { Button, Toast } from "react-bootstrap";
-import axios from "axios";
+import axios from "../api/axios";
 import EndDate from "../Components/EndDate";
-
 // work onthis later
 function Home() {
   // Define state variables for month, year, and file in Home.js
@@ -53,7 +52,7 @@ function Home() {
 
       axios
         .post(
-          `${process.env.REACT_APP_SERVER_URL}/addfile?month=${month}&year=${year}&category=${category}&endDate=${endDate}`,
+          `/addfile?month=${month}&year=${year}&category=${category}&endDate=${endDate}`,
           formData
         ) // this was formData
         .then((response) => {

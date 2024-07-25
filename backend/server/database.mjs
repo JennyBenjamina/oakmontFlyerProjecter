@@ -1,21 +1,20 @@
-import mongoose from "mongoose";
 import multer, { memoryStorage } from "multer";
 import Photo from "../models/photo.mjs";
 import { v4 as uuid } from "uuid";
 import dotenv from "dotenv";
 dotenv.config();
 
-const conn = mongoose
-  .connect(process.env.MONGODB_URI, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  })
-  .then(() => {
-    console.log("monogoDB connected");
-  })
-  .catch((err) => {
-    console.log(err);
-  });
+// const conn = mongoose
+//   .connect(process.env.MONGODB_URI, {
+//     useNewUrlParser: true,
+//     useUnifiedTopology: true,
+//   })
+//   .then(() => {
+//     console.log("monogoDB connected");
+//   })
+//   .catch((err) => {
+//     console.log(err);
+//   });
 
 const storageMemory = memoryStorage();
 
