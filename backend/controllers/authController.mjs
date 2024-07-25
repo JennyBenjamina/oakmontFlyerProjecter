@@ -13,11 +13,11 @@ const handleLogin = async (req, res) => {
 
   res.status(200).send("welcome");
 
-  // const foundUser = await User.findOne({ username: user }).exec();
-  // if (!foundUser) return res.sendStatus(401); //Unauthorized
+  const foundUser = await User.findOne({ username: user }).exec();
+  if (!foundUser) return res.sendStatus(401); //Unauthorized
 
-  // // evaluate password
-  // const match = await bcrypt.compare(pwd, foundUser.password);
+  // evaluate password
+  const match = await bcrypt.compare(pwd, foundUser.password);
 
   // if (match) {
   //   try {
