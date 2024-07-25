@@ -13,10 +13,14 @@ const __filename = fileURLToPath(import.meta.url);
 // Get the directory name
 const __dirname = path.dirname(__filename);
 
-router.get("^/$|/index(.html)?", (req, res) => {
-  res.sendFile(
-    path.join(__dirname, "../../", "frontend", "public", "index.html")
-  );
+// router.get("^/$|/index(.html)?", (req, res) => {
+//   res.sendFile(
+//     path.join(__dirname, "../../", "frontend", "public", "index.html")
+//   );
+// });
+
+router.get("/", (req, res) => {
+  res.send("Hello World");
 });
 
 router.post("/addFile", upload.single("img"), addMetadata, async (req, res) => {
