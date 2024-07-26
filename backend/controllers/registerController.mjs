@@ -12,14 +12,8 @@ const handleNewUser = async (req, res) => {
   const duplicate = await User.findOne({ username: user }).exec();
   if (duplicate) return res.sendStatus(409); //Conflict
   try {
-    //encrypt the password
+    //hash the password
     const hashedPwd = await bcrypt.hash(pwd, 10);
-
-    // // create and store the new user
-    // const result = await User.create({
-    //   username: user,
-    //   password: hashedPwd,
-    // });
 
     const newUser = new User({
       username: user,

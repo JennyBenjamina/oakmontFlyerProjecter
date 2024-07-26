@@ -11,6 +11,7 @@ import registerRouter from "../routes/register.mjs";
 import refreshTokenRouter from "../routes/refresh.mjs";
 import logoutRouter from "../routes/logout.mjs";
 import dotenv from "dotenv";
+
 dotenv.config();
 const port = process.env.PORT || 5000;
 const app = express();
@@ -21,14 +22,6 @@ const corsOrigin =
   process.env.NODE_ENV === "production"
     ? process.env.PROD_URL
     : process.env.DEV_URL;
-
-// allow all access for cors
-// app.use(
-//   cors({
-//     origin: ["http://localhost:3000", "https://alternateshotmarketing.com"],
-//     credentials: true,
-//   })
-// );
 
 app.use(
   cors({

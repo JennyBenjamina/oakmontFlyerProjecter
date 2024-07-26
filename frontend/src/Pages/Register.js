@@ -1,9 +1,5 @@
 import { useRef, useState, useEffect } from "react";
-import {
-  faCheck,
-  faTimes,
-  faInfoCircle,
-} from "@fortawesome/free-solid-svg-icons";
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import axios from "../api/axios";
 import { Link } from "react-router-dom";
@@ -94,15 +90,16 @@ const Register = () => {
       setErrMsg("Invalid Entry");
       return;
     }
+
+    const payload = {
+      user: user,
+      pwd: pwd,
+    };
     try {
-      const response = await axios.post(
-        REGISTER_URL,
-        JSON.stringify({ user, pwd }),
-        {
-          headers: { "Content-Type": "application/json" },
-          withCredentials: true,
-        }
-      );
+      const response = await axios.post(REGISTER_URL, JSON.stringify(payload), {
+        headers: { "Content-Type": "application/json" },
+        withCredentials: true,
+      });
       console.log(response?.data);
       console.log(response?.accessToken);
       console.log(JSON.stringify(response));
