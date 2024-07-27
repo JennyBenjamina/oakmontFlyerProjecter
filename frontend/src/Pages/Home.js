@@ -52,7 +52,7 @@ function Home() {
 
       axios
         .post(
-          `/addfile?month=${month}&year=${year}&category=${category}&endDate=${endDate}`,
+          `/api/addfile?month=${month}&year=${year}&category=${category}&endDate=${endDate}`,
           formData
         ) // this was formData
         .then((response) => {

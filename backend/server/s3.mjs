@@ -5,7 +5,7 @@ import {
 } from "@aws-sdk/client-s3";
 
 // if i want to resize before uploading to s3
-import sharp from "sharp";
+// import sharp from "sharp";
 import dotenv from "dotenv";
 dotenv.config();
 

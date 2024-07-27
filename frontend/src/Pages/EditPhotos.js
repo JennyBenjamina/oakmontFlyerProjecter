@@ -14,7 +14,7 @@ function EditPhotos() {
 
   const handleDelete = (photo) => {
     axios
-      .delete("/deleteFile", {
+      .delete("/api/deleteFile", {
         data: { filename: photo },
       })
       .then(() => {
@@ -38,7 +38,7 @@ function EditPhotos() {
     event.preventDefault();
     setLoading(true);
     axios
-      .get(`/imageNames?month=${month}&year=${year}&category=${category}`)
+      .get(`/api/imageNames?month=${month}&year=${year}&category=${category}`)
       .then((response) => {
         if (response.data === "No files found") {
           setPhotos([]);

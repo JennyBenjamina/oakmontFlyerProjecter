@@ -56,7 +56,7 @@ const MyCarousel = ({ category }) => {
   useEffect(() => {
     if (showCarousel) {
       axios
-        .get(`/images?month=${month}&year=${year}&category=${category}`)
+        .get(`/api/images?month=${month}&year=${year}&category=${category}`)
         .then((response) => {
           if (response.data === "No files found") {
             setImages(["No files found"]);

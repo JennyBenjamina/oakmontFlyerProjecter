@@ -186,3 +186,22 @@
 20240726	16:56:29	80725838-c260-4e50-8e7a-aa8c8c7797f0	GET	http://localhost:3000	/refresh
 20240726	16:56:29	eda4c742-b68f-42d9-99d6-76c3be2cca79	GET	http://localhost:3000	/refresh
 20240726	16:56:35	83d82bad-0444-443c-90c0-36db0d8c3c37	GET	http://localhost:3000	/logout
+20240726	18:32:43	67f3e57a-7e8a-4ae1-b99d-a5ffaee81fe3	POST	http://localhost:3000	/auth
+20240726	18:32:45	629ce9a2-d45d-49ba-bd48-fac91bee2844	GET	http://localhost:3000	/images?month=1&year=2024&category=men
+20240726	18:33:05	b137359d-7527-4163-a964-65147b16243b	POST	http://localhost:3000	/addfile?month=1&year=2024&category=men&endDate=2024-07-28
+20240726	18:33:08	d48ad60e-ac60-4621-a498-65cc11a6c8ad	GET	http://localhost:3000	/images?month=1&year=2024&category=men
+20240727	07:33:39	031f5693-382e-4424-b2aa-97ce1bd47ef6	GET	http://localhost:3000	/refresh
+20240727	07:33:39	575618cc-6c2b-45ef-b658-9bc239e121b4	GET	http://localhost:3000	/refresh
+20240727	07:33:47	be843677-ea07-4119-bbdb-41e15a972142	GET	Origin not set	/
+20240727	07:33:51	c4ffe773-27e0-4a9d-81f8-6f2fd64d3dfa	GET	Origin not set	/api
+20240727	07:33:51	89f81117-2d58-45bd-9886-b5c377e94634	GET	Origin not set	/favicon.ico
+20240727	07:34:53	04cebd1c-fb7a-497a-a497-346d8d710a1b	POST	http://localhost:3000	/auth
+20240727	07:35:01	ab3f2bb7-3929-486e-aadd-eae806e90550	POST	http://localhost:3000	/api/addfile?month=1&year=2024&category=men&endDate=2024-07-30
+20240727	07:35:09	c2aa5941-4907-405f-acab-88371f22516e	GET	http://localhost:3000	/images?month=1&year=2024&category=men
+20240727	07:35:48	1cf95ad0-3e0f-47bf-8f4c-305d87436a24	GET	http://localhost:3000	/api/images?month=1&year=2024&category=men
+20240727	07:37:50	9175a721-1621-4136-b082-8b22c03222c1	GET	http://localhost:3000	/refresh
+20240727	07:37:50	4b405798-70c6-4b72-ab45-01303031314a	GET	http://localhost:3000	/refresh
+20240727	07:37:54	f935f480-122d-4060-a744-f83c4ceea995	GET	http://localhost:3000	/api/imageNames?month=1&year=2024&category=men
+20240727	07:38:01	06806c64-b4c1-4879-94f5-f2e99f058ea1	GET	http://localhost:3000	/api/imageNames?month=1&year=2024&category=all
+20240727	07:38:05	53c2d7b4-5f86-46b7-b2e2-8d92566b8ef7	DELETE	http://localhost:3000	/api/deleteFile
+20240727	07:38:07	2295ad22-6c8b-4f2c-bf09-cad01e7dfdb5	GET	http://localhost:3000	/api/imageNames?month=1&year=2024&category=all

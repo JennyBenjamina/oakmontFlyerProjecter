@@ -40,7 +40,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(credentials);
 app.use(logger);
 app.use(cookieParser());
-app.use("/", rootRouter);
+app.use("/api", rootRouter);
 app.use("/auth", authRouter);
 app.use("/register", registerRouter);
 app.use("/refresh", refreshTokenRouter);
