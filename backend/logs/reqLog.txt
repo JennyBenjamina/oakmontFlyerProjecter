@@ -205,3 +205,80 @@
 20240727	07:38:01	06806c64-b4c1-4879-94f5-f2e99f058ea1	GET	http://localhost:3000	/api/imageNames?month=1&year=2024&category=all
 20240727	07:38:05	53c2d7b4-5f86-46b7-b2e2-8d92566b8ef7	DELETE	http://localhost:3000	/api/deleteFile
 20240727	07:38:07	2295ad22-6c8b-4f2c-bf09-cad01e7dfdb5	GET	http://localhost:3000	/api/imageNames?month=1&year=2024&category=all
+20240729	10:28:25	dba80288-ee6e-4c5f-acd8-e584c8d9967c	GET	Origin not set	/api
+20240729	10:28:25	366e251f-1992-4aa0-aa96-850f2da45352	GET	Origin not set	/favicon.ico
+20240729	10:28:32	9abd5be4-aa20-43ee-8568-73751b83dab4	GET	Origin not set	/users
+20240729	10:28:32	a72a9bed-2900-453e-b6a9-dd137cb3af97	GET	Origin not set	/favicon.ico
+20240729	10:28:43	3f641abd-1d7d-4e10-a347-5758cb04ae14	GET	Origin not set	/students
+20240729	10:28:43	5356cb58-2a7f-45d7-b8d5-bac5f2570b56	GET	Origin not set	/favicon.ico
+20240729	10:56:32	3c249d7b-cbe4-4d0f-9b25-523796604a12	GET	Origin not set	/users
+20240729	10:56:32	5f152805-26a9-43ed-bad8-639ae5e60aaa	GET	Origin not set	/favicon.ico
+20240729	10:57:11	0d1ce3e8-2f1d-4134-a25c-5542b664c8f6	GET	Origin not set	/users
+20240729	10:57:34	b3760d31-3e86-487f-a127-4f336977902b	GET	Origin not set	/users
+20240729	10:58:55	0b772263-89df-4246-a41b-69ab80bd2ddd	GET	Origin not set	/users
+20240729	10:59:16	4b2aa564-78f1-47aa-9fdc-339447859092	GET	http://localhost:3000	/refresh
+20240729	10:59:16	144471c8-98df-4357-ab85-93369fa729f3	GET	http://localhost:3000	/refresh
+20240729	10:59:22	91c743a4-fb33-44a5-803c-0d4ce509b8f9	POST	http://localhost:3000	/auth
+20240729	10:59:41	f0e90f6f-ccf6-4adf-9014-99fa85115894	GET	Origin not set	/users
+20240729	10:59:41	60e4befc-29c6-43f8-b394-50c03e252ede	GET	Origin not set	/favicon.ico
+20240729	10:59:51	f4eafecb-1b03-4a7f-971d-d4faa629063d	GET	Origin not set	/users
+20240729	10:59:51	66e5090a-93ba-4c94-ad19-5afd418b7179	GET	Origin not set	/favicon.ico
+20240729	11:02:33	beca487a-6c4e-4c89-87a0-8e1e648ef774	POST	http://localhost:3000	/auth
+20240729	11:03:39	4cba130f-a308-449a-8cf3-e4d661b5d5cd	GET	http://localhost:3000	/refresh
+20240729	11:03:39	80f5751b-f14f-4ed4-833d-74b6c40d2986	GET	http://localhost:3000	/refresh
+20240729	11:03:50	416fd3e9-4b7b-46b2-a1f4-b93dcdc756cd	GET	http://localhost:3000	/logout
+20240729	11:06:18	d0411df8-d07e-461d-a3d8-527c618c7c5e	POST	http://localhost:3000	/auth
+20240729	11:06:34	3bd373a4-c84d-45c5-98b5-aa5f5bd8cb6a	GET	Origin not set	/users
+20240729	11:06:35	9b5818aa-f28f-4f97-bb34-1cf8ff18c49d	GET	Origin not set	/favicon.ico
+20240729	11:07:34	537a6934-3eec-46f3-b3cf-1610f39d86a8	GET	Origin not set	/users
+20240729	11:07:34	8b85e514-9172-461a-bb31-04aa324fb389	GET	Origin not set	/favicon.ico
+20240729	11:07:36	5c7357e8-236d-4d28-aeb9-c9bc3cedb73c	GET	Origin not set	/users
+20240729	11:07:36	57eb01a2-797f-488b-897d-ddd240451a75	GET	Origin not set	/favicon.ico
+20240729	11:08:21	644fab5a-498e-4bca-8cd8-d9c82f2024d9	GET	Origin not set	/users
+20240729	11:08:21	7096b13c-0cb7-489e-a1e2-d4814a792296	GET	Origin not set	/favicon.ico
+20240729	11:08:45	7db30d82-8e09-440c-9535-23c5dc37d9c8	GET	Origin not set	/users
+20240729	11:09:01	eeb43081-44e6-4c09-9423-6dedd905a6a3	GET	Origin not set	/users
+20240729	11:09:17	7faf981b-ce9c-447c-b2d4-f861e2e078d5	GET	Origin not set	/users
+20240729	11:10:19	eab1d32a-367d-46f0-ad77-1f94ad44d69d	POST	chrome-extension://gmmkjpcadciiokjpikmkkmapphbmdjok	/users
+20240729	11:10:22	bb5adc07-b59b-4720-af57-0f8abf14bbef	GET	Origin not set	/users
+20240729	11:11:52	4da7ce69-36dc-4f28-83ff-94ca5975d1e9	GET	Origin not set	/users
+20240729	11:12:17	e78669a9-b18e-484a-af91-f9e4c29c31a5	GET	Origin not set	/users
+20240729	11:17:14	aff3a408-7610-439c-aa6a-6e787b75e4ca	POST	http://localhost:3000	/auth
+20240729	11:18:12	1c448bc9-fe36-41ac-8f97-35d39da791bf	POST	chrome-extension://gmmkjpcadciiokjpikmkkmapphbmdjok	/signin
+20240729	11:19:13	fdbd1a92-5f11-4ae8-a9db-c59f3dda37ce	POST	chrome-extension://gmmkjpcadciiokjpikmkkmapphbmdjok	/signin
+20240729	11:19:29	7cbb58c3-2c16-4637-8f1e-c054d1b4e6f8	POST	chrome-extension://gmmkjpcadciiokjpikmkkmapphbmdjok	/signin
+20240729	11:20:24	29429d1f-fa47-4157-aa39-fb28b25bd978	POST	chrome-extension://gmmkjpcadciiokjpikmkkmapphbmdjok	/signin
+20240729	11:21:48	2a2db5a3-626a-4693-8d23-fa508052090f	POST	chrome-extension://gmmkjpcadciiokjpikmkkmapphbmdjok	/signin
+20240729	11:22:46	54e05715-0f83-436b-8426-86f07127a15f	POST	chrome-extension://gmmkjpcadciiokjpikmkkmapphbmdjok	/api/signin
+20240729	11:23:27	08c89c92-64a1-4c64-8b5c-819eb6206e19	POST	chrome-extension://gmmkjpcadciiokjpikmkkmapphbmdjok	/auth
+20240729	11:23:50	fb80c0bc-68bb-4618-866b-f2ffaef889df	POST	chrome-extension://gmmkjpcadciiokjpikmkkmapphbmdjok	/auth
+20240729	11:24:37	d94652e8-98c5-4e32-875e-4e94866818c3	GET	Origin not set	/users
+20240729	11:26:48	0c7f42c3-7074-425c-965b-af7127e78c8f	GET	Origin not set	/users
+20240729	11:26:55	14d11a8d-f408-4dae-82e4-8212e94514ed	GET	Origin not set	/users
+20240729	11:27:12	12140f0a-0516-4e40-89b7-52d5b709af8d	POST	chrome-extension://gmmkjpcadciiokjpikmkkmapphbmdjok	/auth
+20240729	11:27:32	6fe0340b-bfb8-4f4e-8b0e-d6ab5dff6748	GET	Origin not set	/users
+20240729	11:28:10	156cb35a-1195-4807-9f32-69c8dd3e1e3f	GET	Origin not set	/users
+20240729	11:29:18	a8c7f4a4-1305-4e6e-9f71-2806c489d542	GET	Origin not set	/users
+20240729	11:37:40	3e5250c5-b9f7-4ee0-b24c-e7f28ceb1d61	POST	chrome-extension://gmmkjpcadciiokjpikmkkmapphbmdjok	/auth
+20240729	11:37:57	c6aa62c5-3d13-4326-8114-6a27f36eb75c	GET	Origin not set	/users
+20240729	11:38:37	6c2afc19-b7b9-4df0-8fb5-0ccfd5a53932	GET	Origin not set	/users
+20240729	11:39:09	9b8733e1-355b-4c52-8a87-f1553ba4b4af	GET	Origin not set	/users
+20240729	11:39:28	b11be13f-34e1-47cf-bde5-73bfec2dfe51	GET	Origin not set	/users
+20240729	11:50:32	054eb661-ca47-48ac-a6d5-766c49c2d1ac	POST	chrome-extension://gmmkjpcadciiokjpikmkkmapphbmdjok	/auth
+20240729	11:50:50	8be8344a-44a6-4a90-8eb6-c71370936a5a	GET	Origin not set	/users
+20240729	11:51:14	672f81ab-f838-4f29-ae5b-9e5bdc6e6514	POST	chrome-extension://gmmkjpcadciiokjpikmkkmapphbmdjok	/auth
+20240729	11:51:28	f2d988b4-7ea1-4abe-8bb3-f56c2b32a0a5	GET	Origin not set	/users
+20240729	11:52:49	9f93f9c6-8c4b-4be6-adde-eb4cbc2b07f1	GET	Origin not set	/users
+20240729	11:54:54	95f19cfb-3da1-4ff2-bd6e-9a723ef43c0a	GET	Origin not set	/users
+20240729	11:56:00	f23b5b72-853a-46db-a863-5792188e9d35	GET	Origin not set	/users
+20240729	11:57:26	77a86e47-9543-44c1-877d-df1b8d7a6765	GET	Origin not set	/users
+20240729	12:00:32	ee67d899-4c8d-4704-b8dc-db083ec282bd	GET	http://localhost:3000	/logout
+20240729	12:00:38	7364639d-8fca-4483-9737-d75d36fe0a0a	POST	http://localhost:3000	/auth
+20240729	12:00:47	03d6f1a0-32be-40a0-bfec-5ec881d81bb0	GET	Origin not set	/users
+20240729	12:00:47	604d56ac-a1e7-4913-9250-8b2c34d02d18	GET	Origin not set	/users
+20240729	12:00:47	709ed8bb-5780-456f-952c-f4cdd0dc05cd	GET	Origin not set	/favicon.ico
+20240729	12:08:49	fcd4466f-666e-438f-adc7-567736508536	GET	Origin not set	/users
+20240729	12:13:42	f4ae5f93-9186-44c8-be52-1787dd1d5003	GET	http://localhost:3000	/refresh
+20240729	12:13:42	3501b87f-6766-4977-985e-6fba32481e7d	GET	http://localhost:3000	/refresh
+20240729	12:13:42	c12f389c-61a2-4359-9a6e-36276355dcc8	GET	http://localhost:3000	/users
+20240729	12:13:42	8831e0ab-57f1-4b32-a1f6-344fb80416de	GET	http://localhost:3000	/users
