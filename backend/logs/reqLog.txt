@@ -205,3 +205,8 @@
 20240727	07:38:01	06806c64-b4c1-4879-94f5-f2e99f058ea1	GET	http://localhost:3000	/api/imageNames?month=1&year=2024&category=all
 20240727	07:38:05	53c2d7b4-5f86-46b7-b2e2-8d92566b8ef7	DELETE	http://localhost:3000	/api/deleteFile
 20240727	07:38:07	2295ad22-6c8b-4f2c-bf09-cad01e7dfdb5	GET	http://localhost:3000	/api/imageNames?month=1&year=2024&category=all
+20240729	09:00:36	f03873a6-275b-4c36-9df0-a02edc7c45a0	POST	http://localhost:3000	/auth
+20240729	09:00:41	f7f601df-4c3c-40aa-a86e-5dee82efb8c8	GET	http://localhost:3000	/api/images?month=1&year=2024&category=men
+20240729	09:00:52	501f1617-c400-4bac-bae8-06e38afde31e	POST	http://localhost:3000	/api/addfile?month=1&year=2024&category=men&endDate=2024-07-31
+20240729	09:00:55	5bc5b5d1-40d3-49fe-b858-4119de013e2d	GET	http://localhost:3000	/api/images?month=1&year=2024&category=men
+20240729	09:01:15	dbddfb00-44aa-405e-bfd0-c61e8c8af55e	GET	http://localhost:3000	/logout

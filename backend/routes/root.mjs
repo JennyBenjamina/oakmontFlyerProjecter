@@ -20,7 +20,7 @@ const __dirname = path.dirname(__filename);
 // });
 
 router.get("/", (req, res) => {
-  res.send("Hello World");
+  res.send(`Hello, ${req.subdomain}`);
 });
 
 router.post("/addFile", upload.single("img"), addMetadata, async (req, res) => {

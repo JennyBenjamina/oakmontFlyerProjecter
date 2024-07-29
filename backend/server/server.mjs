@@ -32,6 +32,9 @@ app.use(
 
 app.use((req, res, next) => {
   console.log("Request received:", req.method, req.url);
+  const host = req.headers.host;
+  const subdomain = host.split(".")[0]; // Extract the subdomain
+  req.subdomain = subdomain;
   next();
 });
 // app.use(cors(corsOptions));
