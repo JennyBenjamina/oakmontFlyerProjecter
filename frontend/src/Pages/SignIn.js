@@ -2,7 +2,7 @@ import { useRef, useState, useEffect } from "react";
 import { Container, Alert, Form, Button } from "react-bootstrap";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import useAuth from "../hooks/useAuth";
-import axios from "../api/axios";
+import axiosInstance from "../api/axios";
 const LOGIN_URL = "/auth";
 
 const SignIn = () => {
@@ -31,7 +31,7 @@ const SignIn = () => {
     e.preventDefault();
 
     try {
-      const response = await axios.post(
+      const response = await axiosInstance.post(
         LOGIN_URL,
         JSON.stringify({ user, pwd }),
         {

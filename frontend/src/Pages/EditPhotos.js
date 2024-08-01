@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Button, Form, ListGroup, Card } from "react-bootstrap";
 import { Spinner } from "react-bootstrap";
 import DateComponent from "../Components/DateComponent";
-import axios from "../api/axios";
+import axiosInstance from "../api/axios";
 
 function EditPhotos() {
   const [photos, setPhotos] = useState([]);
@@ -13,7 +13,7 @@ function EditPhotos() {
   const [loading, setLoading] = useState(false);
 
   const handleDelete = (photo) => {
-    axios
+    axiosInstance
       .delete("/api/deleteFile", {
         data: { filename: photo },
       })
@@ -37,7 +37,7 @@ function EditPhotos() {
   const handleSubmit = (event) => {
     event.preventDefault();
     setLoading(true);
-    axios
+    axiosInstance
       .get(`/api/imageNames?month=${month}&year=${year}&category=${category}`)
       .then((response) => {
         if (response.data === "No files found") {
