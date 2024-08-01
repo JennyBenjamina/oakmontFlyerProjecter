@@ -53,7 +53,7 @@ const handleLogin = async (req, res) => {
         sameSite: "None",
         maxAge: 24 * 60 * 60 * 1000,
       });
-      console.log("roles", roles);
+      console.log("refresh token", refreshToken);
       // Send authorization roles and access token to user
       res.json({ roles, accessToken, isAuthenticated: true });
     } catch (err) {

@@ -1,7 +1,7 @@
 import { useRef, useState, useEffect } from "react";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import axios from "../api/axios";
+import axiosInstance from "../api/axios";
 import { Link } from "react-router-dom";
 import {
   Alert,
@@ -96,10 +96,14 @@ const Register = () => {
       pwd: pwd,
     };
     try {
-      const response = await axios.post(REGISTER_URL, JSON.stringify(payload), {
-        headers: { "Content-Type": "application/json" },
-        withCredentials: true,
-      });
+      const response = await axiosInstance.post(
+        REGISTER_URL,
+        JSON.stringify(payload),
+        {
+          headers: { "Content-Type": "application/json" },
+          withCredentials: true,
+        }
+      );
       console.log(response?.data);
       console.log(response?.accessToken);
       console.log(JSON.stringify(response));

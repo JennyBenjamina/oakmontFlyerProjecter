@@ -4,7 +4,7 @@ import InputFiles from "../Components/InputFiles";
 import DateComponent from "../Components/DateComponent";
 import Category from "../Components/Category";
 import { Button, Toast } from "react-bootstrap";
-import axios from "../api/axios";
+import axiosInstance from "../api/axios";
 import EndDate from "../Components/EndDate";
 // work onthis later
 function Home() {
@@ -50,7 +50,7 @@ function Home() {
 
       console.log("category", category);
 
-      axios
+      axiosInstance
         .post(
           `/api/addfile?month=${month}&year=${year}&category=${category}&endDate=${endDate}`,
           formData

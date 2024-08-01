@@ -20,7 +20,7 @@ const MyNav = () => {
     <Navbar className="navbar-custom " expand="lg">
       <Container
         className={
-          isAuthorized([2001, 1984])
+          isAuthorized([2001, 1984, 5150])
             ? "justify-content-center"
             : "flex-column justify-content-center"
         }
@@ -36,7 +36,7 @@ const MyNav = () => {
             style={{ height: "100px", width: "100px" }}
           />
         </Navbar.Brand>
-        {isAuthorized([2001, 1984]) && (
+        {isAuthorized([2001, 1984, 5150]) && (
           <>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse

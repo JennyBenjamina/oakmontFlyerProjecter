@@ -15,6 +15,7 @@ import Missing from "./Pages/Missing";
 import RequireAuth from "./Components/RequireAuth";
 import Unauthorized from "./Components/Unauthorized";
 import PersistLogin from "./Components/PersistLogin";
+import Dashboard from "./Pages/Dashboard";
 
 const ROLES_LIST = {
   Admin: 5150,
@@ -38,13 +39,23 @@ const App = () => {
             <Route
               element={
                 <RequireAuth
-                  allowedRoles={[ROLES_LIST.User, ROLES_LIST.Editor]}
+                  allowedRoles={[
+                    ROLES_LIST.User,
+                    ROLES_LIST.Editor,
+                    ROLES_LIST.Admin,
+                  ]}
                 />
               }
             >
               <Route path="/" element={<Home />} />
             </Route>
-            <Route element={<RequireAuth allowedRoles={[ROLES_LIST.Editor]} />}>
+            <Route
+              element={
+                <RequireAuth
+                  allowedRoles={[ROLES_LIST.Editor, ROLES_LIST.Admin]}
+                />
+              }
+            >
               <Route path="/edit_photos" element={<EditPhotos />} />
             </Route>
             <Route
@@ -62,6 +73,7 @@ const App = () => {
               <Route path="/womens_events" element={<Women />} />
               <Route path="/etiquette" element={<Etiquette />} />
               <Route path="/misc" element={<Misc />} />
+              <Route path="/dashboard" element={<Dashboard />} />
             </Route>
           </Route>
           {/* Catch all */}

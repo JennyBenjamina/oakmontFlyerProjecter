@@ -4,7 +4,7 @@ import Button from "react-bootstrap/Button";
 import ProgressBar from "react-bootstrap/ProgressBar";
 import Modal from "react-bootstrap/Modal";
 
-import axios from "../api/axios";
+import axiosInstance from "../api/axios";
 import DateComponent from "./DateComponent";
 
 const MyCarousel = ({ category }) => {
@@ -55,7 +55,7 @@ const MyCarousel = ({ category }) => {
 
   useEffect(() => {
     if (showCarousel) {
-      axios
+      axiosInstance
         .get(`/api/images?month=${month}&year=${year}&category=${category}`)
         .then((response) => {
           if (response.data === "No files found") {
